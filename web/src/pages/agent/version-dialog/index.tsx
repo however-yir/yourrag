@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { RAGFlowPagination } from '@/components/ui/ragflow-pagination';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import { Spin } from '@/components/ui/spin';
 import { RAGFlowTooltip } from '@/components/ui/tooltip';
 import { useClientPagination } from '@/hooks/logic-hooks/use-pagination';

@@ -47,7 +47,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { RAGFlowPagination } from '@/components/ui/ragflow-pagination';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Table,

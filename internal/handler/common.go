@@ -17,8 +17,8 @@
 package handler
 
 import (
-	"ragflow/internal/common"
-	"ragflow/internal/entity"
+	"yourrag/internal/common"
+	"yourrag/internal/entity"
 
 	"github.com/gin-gonic/gin"
 )

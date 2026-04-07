@@ -439,7 +439,7 @@ def test_connector_oauth_helper_functions(monkeypatch):
     assert popup_ok.status_code == 200
     assert popup_ok.headers["Content-Type"] == "text/html; charset=utf-8"
     assert "Authorization complete" in popup_ok.body
-    assert "ragflow-gmail-oauth" in popup_ok.body
+    assert "yourrag-gmail-oauth" in popup_ok.body
 
     popup_error = _run(module._render_web_oauth_popup("flow-2", False, "<denied>", "google-drive"))
     assert popup_error.status_code == 200

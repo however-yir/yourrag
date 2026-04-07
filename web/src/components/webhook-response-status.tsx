@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { RAGFlowFormItem } from './ragflow-form';
+import { RAGFlowFormItem } from './yourrag-form';
 import { Input } from './ui/input';
 
 type WebHookResponseStatusFormFieldProps = {

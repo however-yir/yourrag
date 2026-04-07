@@ -18,13 +18,13 @@ package handler
 
 import (
 	"net/http"
-	"ragflow/internal/common"
+	"yourrag/internal/common"
 	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/service"
+	"yourrag/internal/service"
 )
 
 // FileHandler file handler

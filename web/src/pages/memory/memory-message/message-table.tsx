@@ -6,7 +6,7 @@ import { EmptyType } from '@/components/empty/constant';
 import Empty from '@/components/empty/empty';
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/ui/modal/modal';
-import { RAGFlowPagination } from '@/components/ui/ragflow-pagination';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import { Switch } from '@/components/ui/switch';
 import {
   Table,

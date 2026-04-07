@@ -21,7 +21,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"ragflow/internal/server"
+	"yourrag/internal/server"
 	"time"
 
 	"github.com/elastic/go-elasticsearch/v8"

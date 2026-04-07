@@ -22,7 +22,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"ragflow/internal/logger"
+	"yourrag/internal/logger"
 )
 
 // HandleNoRoute handles requests to undefined routes

@@ -105,7 +105,7 @@ def _load_system_module(monkeypatch):
         "message": repr(exc),
         "data": None,
     }
-    api_utils_mod.generate_confirmation_token = lambda: "ragflow-abcdefghijklmnopqrstuvwxyz0123456789"
+    api_utils_mod.generate_confirmation_token = lambda: "yourrag-abcdefghijklmnopqrstuvwxyz0123456789"
     monkeypatch.setitem(sys.modules, "api.utils.api_utils", api_utils_mod)
 
     api_service_mod = ModuleType("api.db.services.api_service")
@@ -272,7 +272,7 @@ def test_system_token_routes_matrix_unit(monkeypatch):
             return {"token": self.token, "beta": self.beta}
 
     filter_updates = []
-    monkeypatch.setattr(module, "generate_confirmation_token", lambda: "ragflow-abcdefghijklmnopqrstuvwxyz0123456789")
+    monkeypatch.setattr(module, "generate_confirmation_token", lambda: "yourrag-abcdefghijklmnopqrstuvwxyz0123456789")
     monkeypatch.setattr(module.UserTenantService, "query", lambda **_kwargs: [SimpleNamespace(role="owner", tenant_id="tenant-9")])
     monkeypatch.setattr(module.APITokenService, "query", lambda **_kwargs: [_Token("tok-1", ""), _Token("tok-2", "beta-2")])
     monkeypatch.setattr(module.APITokenService, "filter_update", lambda conds, payload: filter_updates.append((conds, payload)))

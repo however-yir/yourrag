@@ -19,7 +19,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/handler"
+	"yourrag/internal/handler"
 )
 
 // Router router

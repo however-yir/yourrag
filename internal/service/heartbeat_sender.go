@@ -20,9 +20,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"ragflow/internal/common"
-	"ragflow/internal/server"
-	"ragflow/internal/utility"
+	"yourrag/internal/common"
+	"yourrag/internal/server"
+	"yourrag/internal/utility"
 	"time"
 
 	"go.uber.org/zap"

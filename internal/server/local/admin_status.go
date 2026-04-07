@@ -18,7 +18,7 @@ package local
 
 import (
 	"fmt"
-	"ragflow/internal/logger"
+	"yourrag/internal/logger"
 	"sync"
 )
 

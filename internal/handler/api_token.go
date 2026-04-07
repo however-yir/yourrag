@@ -18,10 +18,10 @@ package handler
 
 import (
 	"net/http"
-	"ragflow/internal/dao"
-	"ragflow/internal/entity"
+	"yourrag/internal/dao"
+	"yourrag/internal/entity"
 
-	"ragflow/internal/service"
+	"yourrag/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

@@ -17,7 +17,7 @@
 package dao
 
 import (
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 )
 
 // TenantModelGroupMappingDAO tenant model group mapping data access object

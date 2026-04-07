@@ -17,7 +17,7 @@
 package dao
 
 import (
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 )
 
 // UserTenantDAO user tenant data access object

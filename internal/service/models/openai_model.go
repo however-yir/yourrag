@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 
 	"strings"
 )

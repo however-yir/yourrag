@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { RAGFlowPagination } from '@/components/ui/ragflow-pagination';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import { useNavigatePage } from '@/hooks/logic-hooks/navigate-hooks';
 import { useFetchAgentListByPage } from '@/hooks/use-agent-request';
 import { Routes } from '@/routes';

@@ -161,9 +161,9 @@ async def _render_web_oauth_popup(flow_id: str, success: bool, message: str, sou
     status = "success" if success else "error"
     auto_close = "window.close();" if success else ""
     escaped_message = escape(message)
-    #   Drive: ragflow-google-drive-oauth
-    #   Gmail: ragflow-gmail-oauth
-    payload_type = f"ragflow-{source}-oauth"
+    #   Drive: yourrag-google-drive-oauth
+    #   Gmail: yourrag-gmail-oauth
+    payload_type = f"yourrag-{source}-oauth"
     payload_json = json.dumps(
         {
             "type": payload_type,

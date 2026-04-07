@@ -18,11 +18,11 @@ package service
 
 import (
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"strconv"
 	"strings"
 
-	"ragflow/internal/dao"
+	"yourrag/internal/dao"
 )
 
 var DB = dao.DB

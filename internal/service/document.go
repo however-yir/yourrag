@@ -19,15 +19,15 @@ package service
 import (
 	"encoding/json"
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"regexp"
 	"sort"
 	"time"
 
-	"ragflow/internal/dao"
-	"ragflow/internal/engine"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine"
 
-	"ragflow/internal/server"
+	"yourrag/internal/server"
 )
 
 // DocumentService document service

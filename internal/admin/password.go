@@ -29,6 +29,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/crypto/scrypt"
@@ -176,21 +177,19 @@ func DecryptPassword(encryptedPassword string) (string, error) {
 	// Try to decode base64
 	ciphertext, err := base64.StdEncoding.DecodeString(encryptedPassword)
 	if err != nil {
-		// If base64 decoding fails, assume it's already a plain password
-		return encryptedPassword, nil
+		return normalizePasswordTransport(encryptedPassword), nil
 	}
 
 	// Load private key
 	privateKey, err := loadPrivateKey()
 	if err != nil {
-		return "", err
+		return normalizePasswordTransport(encryptedPassword), nil
 	}
 
 	// Decrypt using PKCS#1 v1.5
 	plaintext, err := rsa.DecryptPKCS1v15(nil, privateKey, ciphertext)
 	if err != nil {
-		// If decryption fails, assume it's already a plain password
-		return encryptedPassword, nil
+		return normalizePasswordTransport(encryptedPassword), nil
 	}
 
 	return string(plaintext), nil
@@ -199,7 +198,7 @@ func DecryptPassword(encryptedPassword string) (string, error) {
 // loadPrivateKey loads and decrypts the RSA private key from conf/private.pem
 func loadPrivateKey() (*rsa.PrivateKey, error) {
 	// Read private key file
-	keyData, err := os.ReadFile("conf/private.pem")
+	keyData, err := os.ReadFile(resolvePrivateKeyPath())
 	if err != nil {
 		return nil, fmt.Errorf("failed to read private key file: %w", err)
 	}
@@ -213,10 +212,19 @@ func loadPrivateKey() (*rsa.PrivateKey, error) {
 	// Decrypt the PEM block if it's encrypted
 	var privateKey interface{}
 	if block.Headers["Proc-Type"] == "4,ENCRYPTED" {
-		// Decrypt using password "Welcome"
-		decryptedData, err := x509.DecryptPEMBlock(block, []byte("Welcome"))
-		if err != nil {
-			return nil, fmt.Errorf("failed to decrypt private key: %w", err)
+		var decryptedData []byte
+		var decryptErr error
+		for _, passphrase := range rsaPassphraseCandidates() {
+			if len(passphrase) == 0 {
+				continue
+			}
+			decryptedData, decryptErr = x509.DecryptPEMBlock(block, passphrase)
+			if decryptErr == nil {
+				break
+			}
+		}
+		if decryptErr != nil {
+			return nil, fmt.Errorf("failed to decrypt private key: %w", decryptErr)
 		}
 
 		// Parse the decrypted key
@@ -238,4 +246,50 @@ func loadPrivateKey() (*rsa.PrivateKey, error) {
 	}
 
 	return rsaPrivateKey, nil
+}
+
+func resolvePrivateKeyPath() string {
+	for _, envName := range []string{"YOURRAG_RSA_PRIVATE_KEY_PATH", "RAGFLOW_RSA_PRIVATE_KEY_PATH"} {
+		if keyPath := strings.TrimSpace(os.Getenv(envName)); keyPath != "" {
+			return keyPath
+		}
+	}
+	return "conf/private.pem"
+}
+
+func rsaPassphraseCandidates() [][]byte {
+	candidates := make([][]byte, 0, 3)
+	seen := map[string]struct{}{}
+
+	add := func(value string) {
+		value = strings.TrimSpace(value)
+		if value == "" {
+			return
+		}
+		if _, ok := seen[value]; ok {
+			return
+		}
+		seen[value] = struct{}{}
+		candidates = append(candidates, []byte(value))
+	}
+
+	add(os.Getenv("YOURRAG_RSA_KEY_PASSPHRASE"))
+	add(os.Getenv("RAGFLOW_RSA_KEY_PASSPHRASE"))
+	add("Welcome") // legacy default for historical key files
+	return candidates
+}
+
+func isBase64UTF8(value string) bool {
+	decoded, err := base64.StdEncoding.DecodeString(value)
+	if err != nil {
+		return false
+	}
+	return utf8.Valid(decoded)
+}
+
+func normalizePasswordTransport(value string) string {
+	if isBase64UTF8(value) {
+		return value
+	}
+	return base64.StdEncoding.EncodeToString([]byte(value))
 }

@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { FileUploader } from '../file-uploader';
-import { RAGFlowFormItem } from '../ragflow-form';
+import { RAGFlowFormItem } from '../yourrag-form';
 import { Form } from '../ui/form';
 import { Switch } from '../ui/switch';
 

@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"ragflow/internal/cli"
+	"yourrag/internal/cli"
 )
 
 func main() {

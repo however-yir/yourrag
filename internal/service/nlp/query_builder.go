@@ -22,8 +22,8 @@ import (
 	"strings"
 	"sync"
 
-	"ragflow/internal/engine/infinity"
-	"ragflow/internal/tokenizer"
+	"yourrag/internal/engine/infinity"
+	"yourrag/internal/tokenizer"
 
 	"github.com/siongui/gojianfan"
 )

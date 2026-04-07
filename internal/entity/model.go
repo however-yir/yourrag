@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"ragflow/internal/entity/models"
+	"yourrag/internal/entity/models"
 	"strings"
 )
 

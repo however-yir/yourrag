@@ -17,7 +17,7 @@
 package dao
 
 import (
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 )
 
 // File2DocumentDAO file to document mapping data access object

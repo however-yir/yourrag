@@ -2,9 +2,9 @@ import { EmptyType } from '@/components/empty/constant';
 import Empty from '@/components/empty/empty';
 import FileStatusBadge from '@/components/file-status-badge';
 import { FileIcon, IconFontFill } from '@/components/icon-font';
-import { RAGFlowAvatar } from '@/components/ragflow-avatar';
+import { RAGFlowAvatar } from '@/components/yourrag-avatar';
 import { Button } from '@/components/ui/button';
-import { RAGFlowPagination } from '@/components/ui/ragflow-pagination';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import {
   Table,
   TableBody,

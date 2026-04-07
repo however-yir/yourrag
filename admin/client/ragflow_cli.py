@@ -16,15 +16,12 @@
 
 import sys
 import argparse
-import base64
 import getpass
 from cmd import Cmd
 from typing import Any, Dict, List
 
 import requests
 import warnings
-from Cryptodome.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
-from Cryptodome.PublicKey import RSA
 from lark import Lark, Tree
 from parser import GRAMMAR, RAGFlowCLITransformer
 from http_client import HttpClient
@@ -32,13 +29,6 @@ from ragflow_client import RAGFlowClient, run_command
 from user import login_user
 
 warnings.filterwarnings("ignore", category=getpass.GetPassWarning)
-
-def encrypt(input_string):
-    pub = "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArq9XTUSeYr2+N1h3Afl/z8Dse/2yD0ZGrKwx+EEEcdsBLca9Ynmx3nIB5obmLlSfmskLpBo0UACBmB5rEjBp2Q2f3AG3Hjd4B+gNCG6BDaawuDlgANIhGnaTLrIqWrrcm4EMzJOnAOI1fgzJRsOOUEfaS318Eq9OVO3apEyCCt0lOQK6PuksduOjVxtltDav+guVAA068NrPYmRNabVKRNLJpL8w4D44sfth5RvZ3q9t+6RTArpEtc5sh5ChzvqPOzKGMXW83C95TxmXqpbK6olN4RevSfVjEAgCydH6HN6OhtOQEcnrU97r9H0iZOWwbw3pVrZiUkuRD1R56Wzs2wIDAQAB\n-----END PUBLIC KEY-----"
-    pub_key = RSA.importKey(pub)
-    cipher = Cipher_pkcs1_v1_5.new(pub_key)
-    cipher_text = cipher.encrypt(base64.b64encode(input_string.encode("utf-8")))
-    return base64.b64encode(cipher_text).decode("utf-8")
 
 
 def encode_to_base64(input_string):

@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"ragflow/internal/common"
-	"ragflow/internal/server"
-	"ragflow/internal/server/local"
-	"ragflow/internal/storage"
-	"ragflow/internal/utility"
+	"yourrag/internal/common"
+	"yourrag/internal/server"
+	"yourrag/internal/server/local"
+	"yourrag/internal/storage"
+	"yourrag/internal/utility"
 	"strings"
 	"syscall"
 	"time"
@@ -19,15 +19,15 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"ragflow/internal/cache"
-	"ragflow/internal/dao"
-	"ragflow/internal/engine"
-	"ragflow/internal/handler"
-	"ragflow/internal/logger"
-	"ragflow/internal/router"
-	"ragflow/internal/service"
-	"ragflow/internal/service/nlp"
-	"ragflow/internal/tokenizer"
+	"yourrag/internal/cache"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine"
+	"yourrag/internal/handler"
+	"yourrag/internal/logger"
+	"yourrag/internal/router"
+	"yourrag/internal/service"
+	"yourrag/internal/service/nlp"
+	"yourrag/internal/tokenizer"
 )
 
 func printHelp() {
@@ -227,7 +227,7 @@ func startServer(config *server.Config) {
 				"     / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /\n" +
 				"    /_/ |_|/_/  |_|\\____//_/    /_/ \\____/ |__/|__/\n",
 		)
-		logger.Info(fmt.Sprintf("RAGFlow Go Version: %s", utility.GetRAGFlowVersion()))
+			logger.Info(fmt.Sprintf("YourRAG Go Version: %s", utility.GetRAGFlowVersion()))
 		logger.Info(fmt.Sprintf("Server starting on port: %d", config.Server.Port))
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			logger.Fatal("Failed to start server", zap.Error(err))
@@ -244,7 +244,7 @@ func startServer(config *server.Config) {
 	heartbeatService := service.NewHeartbeatSender(
 		logger.Logger,
 		common.ServerTypeAPI,
-		fmt.Sprintf("ragflow-server-%d", config.Server.Port),
+			fmt.Sprintf("yourrag-server-%d", config.Server.Port),
 		localIP,
 		config.Server.Port,
 	)

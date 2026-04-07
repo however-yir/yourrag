@@ -17,7 +17,7 @@
 package service
 
 import (
-	"ragflow/internal/dao"
+	"yourrag/internal/dao"
 )
 
 // ConnectorService connector service

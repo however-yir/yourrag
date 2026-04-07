@@ -19,7 +19,7 @@ package models
 import (
 	"fmt"
 	"net/http"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 
 	"sync"
 )

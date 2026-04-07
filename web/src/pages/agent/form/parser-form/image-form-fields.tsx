@@ -1,4 +1,4 @@
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { Textarea } from '@/components/ui/textarea';
 import { buildOptions } from '@/utils/form';
 import { isEmpty } from 'lodash';

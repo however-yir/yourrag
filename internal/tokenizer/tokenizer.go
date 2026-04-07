@@ -26,8 +26,8 @@ import (
 
 	"go.uber.org/zap"
 
-	rag "ragflow/internal/binding"
-	"ragflow/internal/logger"
+	rag "yourrag/internal/binding"
+	"yourrag/internal/logger"
 )
 
 // PoolConfig configures the elastic analyzer pool

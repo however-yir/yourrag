@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"ragflow/internal/common"
+	"yourrag/internal/common"
 	"sync"
 	"time"
 )

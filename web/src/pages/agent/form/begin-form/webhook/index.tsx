@@ -2,7 +2,7 @@ import { Collapse } from '@/components/collapse';
 import { CopyToClipboardWithText } from '@/components/copy-to-clipboard';
 import NumberInput from '@/components/originui/number-input';
 import { SelectWithSearch } from '@/components/originui/select-with-search';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { Label } from '@/components/ui/label';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { Separator } from '@/components/ui/separator';

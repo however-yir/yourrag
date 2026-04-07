@@ -21,7 +21,7 @@ package dao
 
 import (
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"strings"
 )
 

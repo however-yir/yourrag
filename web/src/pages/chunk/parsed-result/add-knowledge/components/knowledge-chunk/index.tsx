@@ -29,7 +29,7 @@ import message from '@/components/ui/message';
 import {
   RAGFlowPagination,
   RAGFlowPaginationType,
-} from '@/components/ui/ragflow-pagination';
+} from '@/components/ui/yourrag-pagination';
 import { Spin } from '@/components/ui/spin';
 import {
   QueryStringMap,

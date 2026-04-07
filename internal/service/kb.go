@@ -20,12 +20,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"ragflow/internal/common"
-	"ragflow/internal/dao"
-	"ragflow/internal/engine"
-	"ragflow/internal/entity"
+	"yourrag/internal/common"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine"
+	"yourrag/internal/entity"
 
-	"ragflow/internal/utility"
+	"yourrag/internal/utility"
 	"strings"
 	"time"
 

@@ -21,14 +21,14 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"ragflow/internal/common"
-	"ragflow/internal/dao"
-	"ragflow/internal/entity"
+	"yourrag/internal/common"
+	"yourrag/internal/dao"
+	"yourrag/internal/entity"
 	"strings"
 	"time"
 
-	model "ragflow/internal/entity/models"
-	"ragflow/internal/service/models"
+	model "yourrag/internal/entity/models"
+	"yourrag/internal/service/models"
 )
 
 // ModelProvider provides model instances based on tenant and model type

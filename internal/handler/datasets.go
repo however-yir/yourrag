@@ -24,8 +24,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/common"
-	"ragflow/internal/service"
+	"yourrag/internal/common"
+	"yourrag/internal/service"
 )
 
 // DatasetsHandler handles the RESTful dataset endpoints.

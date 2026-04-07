@@ -118,7 +118,7 @@ class TestDeleteUserApiKey:
     def test_delete_user_api_key_with_nonexistent_token(self, admin_session: requests.Session) -> None:
         """Test deleting a non-existent API key fails"""
         user_name: str = EMAIL
-        nonexistent_token: str = "ragflow-nonexistent-token-12345"
+        nonexistent_token: str = "yourrag-nonexistent-token-12345"
 
         # Try to delete a non-existent token
         delete_response: dict[str, Any] = delete_user_api_key(admin_session, user_name, nonexistent_token)
@@ -133,7 +133,7 @@ class TestDeleteUserApiKey:
     def test_delete_user_api_key_with_nonexistent_user(self, admin_session: requests.Session) -> None:
         """Test deleting API key for non-existent user fails"""
         nonexistent_user: str = "nonexistent_user_12345@example.com"
-        token: str = "ragflow-test-token-12345"
+        token: str = "yourrag-test-token-12345"
 
         # Try to delete token for non-existent user
         delete_response: dict[str, Any] = delete_user_api_key(admin_session, nonexistent_user, token)
@@ -179,7 +179,7 @@ class TestDeleteUserApiKey:
         """Test that deleting API key without admin auth fails"""
         session: requests.Session = requests.Session()
         user_name: str = EMAIL
-        token: str = "ragflow-test-token-12345"
+        token: str = "yourrag-test-token-12345"
 
         response: dict[str, Any] = delete_user_api_key(session, user_name, token)
 

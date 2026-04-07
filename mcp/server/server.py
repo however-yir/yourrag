@@ -352,7 +352,7 @@ async def sse_lifespan(server: Server) -> AsyncIterator[dict]:
         logging.info("Legacy SSE application shutting down...")
 
 
-app = Server("ragflow-mcp-server", lifespan=sse_lifespan)
+app = Server("yourrag-mcp-server", lifespan=sse_lifespan)
 AUTH_TOKEN_STATE_KEY = "ragflow_auth_token"
 
 
@@ -751,7 +751,7 @@ if __name__ == "__main__":
     1. Self-host mode with both SSE and Streamable HTTP (in JSON response mode) enabled (default):
         uv run mcp/server/server.py --host=127.0.0.1 --port=9382 \
             --base-url=http://127.0.0.1:9380 \
-            --mode=self-host --api-key=ragflow-xxxxx
+            --mode=self-host --api-key=yourrag-xxxxx
 
     2. Host mode (multi-tenant, clients must provide Authorization headers):
         uv run mcp/server/server.py --host=127.0.0.1 --port=9382 \
@@ -760,18 +760,18 @@ if __name__ == "__main__":
 
     3. Disable legacy SSE (only streamable HTTP will be active):
         uv run mcp/server/server.py --no-transport-sse-enabled \
-            --mode=self-host --api-key=ragflow-xxxxx
+            --mode=self-host --api-key=yourrag-xxxxx
 
     4. Disable streamable HTTP (only legacy SSE will be active):
         uv run mcp/server/server.py --no-transport-streamable-http-enabled \
-            --mode=self-host --api-key=ragflow-xxxxx
+            --mode=self-host --api-key=yourrag-xxxxx
 
     5. Use streamable HTTP with SSE-style events (disable JSON response):
         uv run mcp/server/server.py --transport-streamable-http-enabled --no-json-response \
-            --mode=self-host --api-key=ragflow-xxxxx
+            --mode=self-host --api-key=yourrag-xxxxx
 
     6. Disable both transports (for testing):
         uv run mcp/server/server.py --no-transport-sse-enabled --no-transport-streamable-http-enabled \
-            --mode=self-host --api-key=ragflow-xxxxx
+            --mode=self-host --api-key=yourrag-xxxxx
     """
     main()

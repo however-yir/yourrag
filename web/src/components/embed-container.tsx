@@ -1,7 +1,7 @@
 import { useFetchAppConf } from '@/hooks/logic-hooks';
 import { RefreshCcw } from 'lucide-react';
 import { PropsWithChildren } from 'react';
-import { RAGFlowAvatar } from './ragflow-avatar';
+import { RAGFlowAvatar } from './yourrag-avatar';
 import { Button } from './ui/button';
 
 type EmbedContainerProps = {

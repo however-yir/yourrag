@@ -1,5 +1,4 @@
-module ragflow
-
+module yourrag
 go 1.25.0
 
 require (

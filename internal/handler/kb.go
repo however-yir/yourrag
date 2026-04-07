@@ -20,9 +20,9 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
-	"ragflow/internal/common"
-	"ragflow/internal/engine"
-	"ragflow/internal/service"
+	"yourrag/internal/common"
+	"yourrag/internal/engine"
+	"yourrag/internal/service"
 	"strconv"
 	"strings"
 

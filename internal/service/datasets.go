@@ -20,15 +20,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"strings"
 	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"ragflow/internal/common"
-	"ragflow/internal/dao"
+	"yourrag/internal/common"
+	"yourrag/internal/dao"
 )
 
 var (

@@ -22,8 +22,8 @@ import (
 	"strings"
 
 	infinity "github.com/infiniflow/infinity-go-sdk"
-	"ragflow/internal/logger"
-	"ragflow/internal/utility"
+	"yourrag/internal/logger"
+	"yourrag/internal/utility"
 
 	"go.uber.org/zap"
 )

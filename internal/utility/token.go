@@ -141,23 +141,23 @@ func GenerateToken() string {
 
 // GenerateAPIToken generates a secure random access key
 // Equivalent to Python's generate_confirmation_token():
-// return "ragflow-" + secrets.token_urlsafe(32)
+// return "yourrag-" + secrets.token_urlsafe(32)
 func GenerateAPIToken() string {
 	// Generate 32 random bytes
 	bytes := make([]byte, 32)
 	if _, err := rand.Read(bytes); err != nil {
 		// Fallback to UUID if random generation fails
-		return "ragflow-" + strings.ReplaceAll(uuid.New().String(), "-", "")
+		return "yourrag-" + strings.ReplaceAll(uuid.New().String(), "-", "")
 	}
 	// Use URL-safe base64 encoding (same as Python's token_urlsafe)
-	return "ragflow-" + base64.RawURLEncoding.EncodeToString(bytes)
+	return "yourrag-" + base64.RawURLEncoding.EncodeToString(bytes)
 }
 
 // GenerateBetaAPIToken generates a beta access key
-// Equivalent to Python's: generate_confirmation_token().replace("ragflow-", "")[:32]
+// Equivalent to Python's: generate_confirmation_token().replace("yourrag-", "")[:32]
 func GenerateBetaAPIToken(accessKey string) string {
-	// Remove "ragflow-" prefix
-	withoutPrefix := strings.TrimPrefix(accessKey, "ragflow-")
+	withoutPrefix := strings.TrimPrefix(accessKey, "yourrag-")
+	withoutPrefix = strings.TrimPrefix(withoutPrefix, "ragflow-") // legacy compatibility
 	// Take first 32 characters
 	if len(withoutPrefix) > 32 {
 		return withoutPrefix[:32]

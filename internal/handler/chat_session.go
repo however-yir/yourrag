@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"ragflow/internal/common"
+	"yourrag/internal/common"
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/service"
+	"yourrag/internal/service"
 )
 
 // ChatSessionHandler chat session (conversation) handler

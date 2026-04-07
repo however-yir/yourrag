@@ -206,7 +206,7 @@ const GmailTokenField = ({
   useEffect(() => {
     const handler = (event: MessageEvent) => {
       const payload = event.data;
-      if (!payload || payload.type !== 'ragflow-gmail-oauth') {
+      if (!payload || payload.type !== 'yourrag-gmail-oauth') {
         return;
       }
       if (!payload.flowId) {
@@ -298,7 +298,7 @@ const GmailTokenField = ({
         const flowId = data.data.flow_id;
         const popup = window.open(
           data.data.authorization_url,
-          'ragflow-gmail-oauth',
+          'yourrag-gmail-oauth',
           'width=600,height=720',
         );
         if (!popup) {

@@ -224,18 +224,19 @@ class MinioConfig(FileStoreConfig):
 def load_configurations(config_path: str) -> list[BaseConfig]:
     raw_configs = read_config(config_path)
     configurations = []
-    ragflow_count = 0
+    yourrag_count = 0
     id_count = 0
     for k, v in raw_configs.items():
         match k:
-            case "ragflow":
-                name: str = f'ragflow_{ragflow_count}'
+            case "yourrag" | "ragflow":
+                name: str = f'yourrag_{yourrag_count}'
                 host: str = v['host']
                 http_port: int = v['http_port']
                 config = RAGFlowServerConfig(id=id_count, name=name, host=host, port=http_port,
                                              service_type="ragflow_server",
                                              detail_func_name="check_ragflow_server_alive")
                 configurations.append(config)
+                yourrag_count += 1
                 id_count += 1
             case "es":
                 name: str = 'elasticsearch'

@@ -1,101 +1,55 @@
 # YourRAG
 
-> A customizable RAG + Agent platform forked from RAGFlow, tailored for private deployment and vertical business use cases.
+![YourRAG Logo](./assets/yourrag-logo.svg)
 
-## 1. 项目定位
+YourRAG 是一个基于 RAGFlow 深度改造的私有化 RAG + Agent 平台，目标是用于你的自有品牌交付与可持续二开。
 
-`YourRAG` 是一个基于开源 RAGFlow 深度定制的知识增强与智能体平台。
-本仓库的目标不是“原版镜像”，而是为你的实际业务场景提供：
+## 核心定位
 
-- 可控的私有化部署能力
-- 可替换的模型与数据源接入能力
-- 更安全的默认配置
-- 明确的二次开发边界
+- 自有品牌：项目名、默认账号、镜像、配置入口已迁移到 `YourRAG`。
+- 安全优先：默认配置去敏，私钥不再提交到仓库。
+- 可运维：补齐单机、Docker Compose、Kubernetes 三套部署文档。
+- 可演进：保留对上游部分兼容能力，便于后续同步与迁移。
 
-## 2. 本仓库已做的关键改动
+## 已完成改造
 
-本分支当前已完成第一阶段改造（品牌与配置基础层）：
+- Go 模块从 `ragflow` 迁移为 `yourrag`，内部导入路径同步更新。
+- 默认管理员改为 `admin@yourrag.local`，默认口令改为 `change_me_please`。
+- `service_conf` 顶层服务键从 `ragflow` 改为 `yourrag`，并保留旧键兼容读取。
+- Token 前缀改为 `yourrag-`，同时保留 `ragflow-` 兼容解析。
+- 私钥/公钥从仓库移除并加入忽略规则；新增一键生成脚本。
+- 前端与 CLI 登录加密改为 `RSA 可选 + base64 回退`，避免强依赖仓库内密钥。
+- CI 重构为 GitHub Hosted Runner 的通用流水线。
 
-- 品牌入口改造：
-  - Web 标题改为 `YourRAG`
-  - 前端默认应用名改为 `YourRAG`
-  - 默认云域名常量改为 `cloud.yourrag.io`
-- 默认账号与安全基线调整：
-  - 默认超管邮箱从 `admin@ragflow.io` 调整为 `admin@yourrag.local`
-  - 默认超管密码从 `admin` 调整为 `change_me_please`
-- 默认配置去敏：
-  - `docker/.env` 与 `service_conf` 中的默认密码改为 `change_me_*`
-  - 默认数据库命名从 `rag_flow` / `ragflow_doc` 调整为 `yourrag` / `yourrag_doc`
-- 包发布名调整（用于后续独立发布）：
-  - Python 主包：`yourrag`
-  - Python SDK：`yourrag-sdk`
-  - Admin CLI：`yourrag-cli`
-- Helm 元信息调整：
-  - Chart 名称：`yourrag`
+完整清单见：`docs/customization/completed-checklist.md`
 
-## 3. 与原版的关系
+## 部署文档
 
-- 本项目基于上游 RAGFlow 进行二次开发。
-- 许可证遵循上游 Apache-2.0（见 `LICENSE`）。
-- 额外归属说明见 `NOTICE`。
-- 你可在此基础上继续添加私有业务模块、私有协议与商业发行策略。
+- 单机部署：`docs/deployment/single-host.md`
+- Docker Compose：`docs/deployment/docker-compose.md`
+- Kubernetes/Helm：`docs/deployment/kubernetes.md`
 
-## 4. 快速启动（Docker）
-
-### 4.1 准备配置
-
-进入 docker 目录后，先检查并修改敏感配置：
+## 快速启动（Docker Compose）
 
 ```bash
 cd docker
-# 重点修改：MYSQL_PASSWORD, REDIS_PASSWORD, MINIO_PASSWORD,
-# ELASTIC_PASSWORD, OPENSEARCH_PASSWORD, DEFAULT_SUPERUSER_PASSWORD
+cp .env .env.local
+# 修改密码与管理员账号后启动
+
+docker compose --env-file .env.local -f docker-compose.yml up -d
+curl -f http://127.0.0.1:9380/v1/system/ping
 ```
 
-### 4.2 启动
+## RSA 密钥（可选）
 
 ```bash
-docker compose -f docker-compose.yml up -d
+./tools/scripts/generate_rsa_keys.sh
 ```
 
-### 4.3 健康检查
+如未配置 RSA 密钥，系统会回退为 base64 传输模式以保证可用性。
 
-```bash
-docker ps
-```
+## 与上游关系
 
-如果你启用了 Web 网关，默认端口通常为 `80/443`（取决于 `docker/.env`）。
-
-## 5. 建议的生产部署基线
-
-上线前建议至少完成以下动作：
-
-1. 将所有 `change_me_*` 默认口令替换为强随机值。
-2. 使用外部密钥管理（Vault/KMS/Secrets Manager）托管密钥。
-3. 关闭默认开放注册（按需设置 `REGISTER_ENABLED`）。
-4. 使用 HTTPS、固定镜像版本（digest pinning）和最小权限运行。
-5. 为数据库、对象存储、Redis 配置独立网络与访问控制。
-
-## 6. 开发与二次改造路线
-
-建议按以下顺序推进你的深度私有化：
-
-1. 全量品牌替换（UI 文案、多语言、CLI 提示、镜像名、发布名）
-2. 模块化重构（ingestion / retrieval / agent / connector 分层）
-3. 配置中心化（环境隔离：dev/staging/prod）
-4. CI/CD 与安全扫描（SAST/依赖漏洞/Secret Scan）
-5. 上游同步策略（定义可回放的 rebase / cherry-pick 规则）
-
-## 7. 当前已知事项
-
-- 本阶段主要完成“品牌入口 + 默认配置去敏 + 文档重建”。
-- 代码中仍有部分 `ragflow` 历史标识（尤其在多语言文案、测试、内部变量名中），这是后续第二阶段会清理的内容。
-- 如果你要对外发布，建议补齐：
-  - 仓库描述与 Topics
-  - 新 Logo 与品牌资产
-  - Release/Changelog 与升级指南
-
-## 8. 免责声明
-
-- 本仓库中的附加协议模板仅用于工程示例，不构成法律意见。
-- 对外发布前，请让法务或专业律师审阅许可证与商业条款。
+- 本项目基于上游 RAGFlow 进行二次开发。
+- 继续遵循 Apache-2.0（见 `LICENSE`）。
+- 归属与附加说明见 `NOTICE` 与 `LICENSE-ADDITIONAL.md`。

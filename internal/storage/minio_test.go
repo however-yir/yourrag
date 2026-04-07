@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"ragflow/internal/utility"
+	"yourrag/internal/utility"
 	"testing"
 	"time"
 
-	"ragflow/internal/server"
+	"yourrag/internal/server"
 )
 
 // getMinioConfig returns MinIO configuration for testing

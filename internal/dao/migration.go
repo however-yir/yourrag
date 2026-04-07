@@ -18,7 +18,7 @@ package dao
 
 import (
 	"fmt"
-	"ragflow/internal/logger"
+	"yourrag/internal/logger"
 	"strings"
 
 	"go.uber.org/zap"

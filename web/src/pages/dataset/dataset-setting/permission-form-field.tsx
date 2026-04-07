@@ -1,5 +1,5 @@
 import { SelectWithSearch } from '@/components/originui/select-with-search';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { PermissionRole } from '@/constants/permission';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';

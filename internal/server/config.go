@@ -231,14 +231,14 @@ func Init(configPath string) error {
 			continue
 		}
 
-		switch k {
-		case "ragflow":
-			configDict["id"] = id
-			configDict["name"] = fmt.Sprintf("ragflow_%d", id)
-			configDict["service_type"] = "ragflow_server"
-			configDict["extra"] = map[string]interface{}{}
-			configDict["port"] = configDict["http_port"]
-			delete(configDict, "http_port")
+			switch k {
+			case "yourrag", "ragflow":
+				configDict["id"] = id
+				configDict["name"] = fmt.Sprintf("yourrag_%d", id)
+				configDict["service_type"] = "ragflow_server"
+				configDict["extra"] = map[string]interface{}{}
+				configDict["port"] = configDict["http_port"]
+				delete(configDict, "http_port")
 		case "es":
 			// Skip if retrieval_type doesn't match doc_engine
 			if globalConfig.DocEngine.Type != "elasticsearch" {
@@ -391,7 +391,7 @@ func FromEnvironments() error {
 	}
 
 	// Default super user email
-	globalConfig.DefaultSuperUser.Email = "admin@ragflow.io"
+	globalConfig.DefaultSuperUser.Email = "admin@yourrag.local"
 	superUserEmail := os.Getenv("DEFAULT_SUPERUSER_EMAIL")
 	if superUserEmail != "" {
 		_, err := mail.ParseAddress(superUserEmail)
@@ -481,12 +481,13 @@ func FromConfigFile(configPath string) error {
 		v.SetConfigFile(configPath)
 	} else {
 		// Try to load service_conf.yaml from conf directory first
-		v.SetConfigName("service_conf")
-		v.SetConfigType("yaml")
-		v.AddConfigPath("./conf")
-		v.AddConfigPath(".")
-		v.AddConfigPath("/etc/ragflow/")
-	}
+			v.SetConfigName("service_conf")
+			v.SetConfigType("yaml")
+			v.AddConfigPath("./conf")
+			v.AddConfigPath(".")
+			v.AddConfigPath("/etc/yourrag/")
+			v.AddConfigPath("/etc/ragflow/")
+		}
 
 	// Read environment variables
 	v.SetEnvPrefix("RAGFLOW")
@@ -546,18 +547,19 @@ func FromConfigFile(configPath string) error {
 		}
 	}
 
-	// Map ragflow section to ServerConfig
+	// Map yourrag/ragflow section to ServerConfig
 	if globalConfig != nil && globalConfig.Server.Port == 0 {
-		// Try to map from ragflow section
-		if v.IsSet("ragflow") {
-			ragflowConfig := v.Sub("ragflow")
-			if ragflowConfig != nil {
-				globalConfig.Server.Port = ragflowConfig.GetInt("http_port") + 4 // 9384, by default
-				//globalConfig.Server.Port = ragflowConfig.GetInt("http_port") // Correct
-				// If mode is not set, default to debug
-				if globalConfig.Server.Mode == "" {
-					globalConfig.Server.Mode = "release"
-				}
+		var serverSection *viper.Viper
+		if v.IsSet("yourrag") {
+			serverSection = v.Sub("yourrag")
+		} else if v.IsSet("ragflow") {
+			serverSection = v.Sub("ragflow")
+		}
+		if serverSection != nil {
+			globalConfig.Server.Port = serverSection.GetInt("http_port") + 4 // 9384, by default
+			// If mode is not set, default to release
+			if globalConfig.Server.Mode == "" {
+				globalConfig.Server.Mode = "release"
 			}
 		}
 	}

@@ -23,19 +23,19 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"ragflow/internal/cache"
-	"ragflow/internal/engine"
+	"yourrag/internal/cache"
+	"yourrag/internal/engine"
 	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"ragflow/internal/admin"
-	"ragflow/internal/dao"
-	"ragflow/internal/logger"
-	"ragflow/internal/server"
-	"ragflow/internal/utility"
+	"yourrag/internal/admin"
+	"yourrag/internal/dao"
+	"yourrag/internal/logger"
+	"yourrag/internal/server"
+	"yourrag/internal/utility"
 )
 
 // AdminServer admin server

@@ -231,3 +231,7 @@ internal/cpp/cmake-build-debug/
 # Go server build output
 bin/*
 !bin/.gitkeep
+
+# Local RSA transport keys
+conf/private.pem
+conf/public.pem

@@ -17,8 +17,8 @@
 package service
 
 import (
-	"ragflow/internal/dao"
-	"ragflow/internal/entity"
+	"yourrag/internal/dao"
+	"yourrag/internal/entity"
 )
 
 // SearchService search service

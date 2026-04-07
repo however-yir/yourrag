@@ -18,7 +18,7 @@ package dao
 
 import (
 	"path"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 
 	"strconv"
 	"strings"

@@ -19,13 +19,13 @@ package server
 import (
 	"context"
 	"fmt"
-	"ragflow/internal/utility"
+	"yourrag/internal/utility"
 	"sync"
 	"time"
 
 	"go.uber.org/zap"
 
-	"ragflow/internal/logger"
+	"yourrag/internal/logger"
 )
 
 // Variables holds all runtime variables that can be changed during system operation
@@ -51,7 +51,7 @@ const (
 	// DefaultSecretKey is used when no secret key is found in storage
 	DefaultSecretKey = "infiniflow-token"
 	// SecretKeyRedisKey is the Redis key for storing secret key
-	SecretKeyRedisKey = "ragflow:system:secret_key"
+	SecretKeyRedisKey = "yourrag:system:secret_key"
 	// SecretKeyTTL is the TTL for secret key in Redis (0 = no expiration)
 	SecretKeyTTL = 0
 )

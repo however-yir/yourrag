@@ -21,9 +21,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"ragflow/internal/dao"
-	"ragflow/internal/engine"
-	"ragflow/internal/engine/types"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine"
+	"yourrag/internal/engine/types"
 )
 
 // MetadataService provides common metadata operations

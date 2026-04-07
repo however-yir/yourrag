@@ -21,9 +21,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/common"
-	"ragflow/internal/dao"
-	"ragflow/internal/service"
+	"yourrag/internal/common"
+	"yourrag/internal/dao"
+	"yourrag/internal/service"
 )
 
 // FactoryResponse represents a model provider factory

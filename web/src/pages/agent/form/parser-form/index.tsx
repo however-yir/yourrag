@@ -2,7 +2,7 @@ import {
   SelectWithSearch,
   SelectWithSearchFlagOptionType,
 } from '@/components/originui/select-with-search';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { BlockButton, Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { MultiSelect } from '@/components/ui/multi-select';

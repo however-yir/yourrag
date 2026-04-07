@@ -17,9 +17,9 @@
 package service
 
 import (
-	"ragflow/internal/dao"
-	"ragflow/internal/entity"
-	"ragflow/internal/utility"
+	"yourrag/internal/dao"
+	"yourrag/internal/entity"
+	"yourrag/internal/utility"
 	"time"
 )
 
@@ -71,10 +71,10 @@ func (s *SystemService) CreateAPIToken(tenantID string, req *CreateAPITokenReque
 	nowDate := time.Now()
 
 	// Generate token and beta values
-	// token: "ragflow-" + secrets.token_urlsafe(32)
-	APIToken := utility.GenerateAPIToken()
-	// beta: generate_confirmation_token().replace("ragflow-", "")[:32]
-	betaAPIKey := utility.GenerateBetaAPIToken(APIToken)
+		// token: "yourrag-" + secrets.token_urlsafe(32)
+		APIToken := utility.GenerateAPIToken()
+		// beta: generate_confirmation_token().replace("yourrag-", "")[:32]
+		betaAPIKey := utility.GenerateBetaAPIToken(APIToken)
 
 	APITokenData := &entity.APIToken{
 		TenantID: tenantID,

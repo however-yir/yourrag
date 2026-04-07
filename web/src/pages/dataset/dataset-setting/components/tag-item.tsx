@@ -1,4 +1,4 @@
-import { RAGFlowAvatar } from '@/components/ragflow-avatar';
+import { RAGFlowAvatar } from '@/components/yourrag-avatar';
 import { SliderInputFormField } from '@/components/slider-input-form-field';
 import {
   FormControl,

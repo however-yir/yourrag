@@ -19,15 +19,15 @@ package handler
 import (
 	"fmt"
 	"net/http"
-	"ragflow/internal/common"
-	"ragflow/internal/server"
-	"ragflow/internal/server/local"
-	"ragflow/internal/utility"
+	"yourrag/internal/common"
+	"yourrag/internal/server"
+	"yourrag/internal/server/local"
+	"yourrag/internal/utility"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/service"
+	"yourrag/internal/service"
 )
 
 // UserHandler user handler

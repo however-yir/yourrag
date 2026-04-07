@@ -25,15 +25,15 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"ragflow/internal/cache"
-	"ragflow/internal/common"
-	"ragflow/internal/dao"
-	"ragflow/internal/engine/elasticsearch"
-	"ragflow/internal/entity"
-	"ragflow/internal/logger"
+	"yourrag/internal/cache"
+	"yourrag/internal/common"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine/elasticsearch"
+	"yourrag/internal/entity"
+	"yourrag/internal/logger"
 
-	"ragflow/internal/server"
-	"ragflow/internal/utility"
+	"yourrag/internal/server"
+	"yourrag/internal/utility"
 	"regexp"
 	"strconv"
 	"time"
@@ -1578,7 +1578,7 @@ func (s *Service) GetAllEnvironments() ([]map[string]interface{}, error) {
 	// DEFAULT_SUPERUSER_EMAIL
 	defaultSuperuserEmail := os.Getenv("DEFAULT_SUPERUSER_EMAIL")
 	if defaultSuperuserEmail == "" {
-		defaultSuperuserEmail = "admin@ragflow.io"
+		defaultSuperuserEmail = "admin@yourrag.local"
 	}
 	result = append(result, map[string]interface{}{
 		"env":   "DEFAULT_SUPERUSER_EMAIL",
@@ -1689,7 +1689,7 @@ func (s *Service) HandleHeartbeat(message *common.BaseMessage) (common.ErrorCode
 func (s *Service) InitDefaultAdmin() error {
 	// Default superuser settings (matching Python's DEFAULT_SUPERUSER_* defaults)
 	defaultNickname := "admin"
-	defaultEmail := "admin@ragflow.io"
+	defaultEmail := "admin@yourrag.local"
 	defaultPassword := "admin"
 
 	// Query superusers

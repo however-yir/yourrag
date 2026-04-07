@@ -1,5 +1,5 @@
 import { SelectWithSearch } from '@/components/originui/select-with-search';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { Input } from '@/components/ui/input';
 import { WebhookJWTAlgorithmList } from '@/constants/agent';
 import { WebhookSecurityAuthType } from '@/pages/agent/constant';

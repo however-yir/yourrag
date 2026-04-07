@@ -33,7 +33,7 @@ DEFAULT_MAX_REDIRECTS = int(os.environ.get("HTTP_CLIENT_MAX_REDIRECTS", "30"))
 DEFAULT_MAX_RETRIES = int(os.environ.get("HTTP_CLIENT_MAX_RETRIES", "2"))
 DEFAULT_BACKOFF_FACTOR = float(os.environ.get("HTTP_CLIENT_BACKOFF_FACTOR", "0.5"))
 DEFAULT_PROXY = os.environ.get("HTTP_CLIENT_PROXY")
-DEFAULT_USER_AGENT = os.environ.get("HTTP_CLIENT_USER_AGENT", "ragflow-http-client")
+DEFAULT_USER_AGENT = os.environ.get("HTTP_CLIENT_USER_AGENT", "yourrag-http-client")
 
 
 def _clean_headers(

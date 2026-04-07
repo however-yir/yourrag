@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"testing"
 
-	"ragflow/internal/engine/infinity"
+	"yourrag/internal/engine/infinity"
 )
 
 func TestNewQueryBuilder(t *testing.T) {

@@ -194,7 +194,7 @@ const BoxTokenField = ({ value, onChange }: BoxTokenFieldProps) => {
   useEffect(() => {
     const handler = (event: MessageEvent) => {
       const payload = event.data;
-      if (!payload || payload.type !== 'ragflow-box-oauth') {
+      if (!payload || payload.type !== 'yourrag-box-oauth') {
         return;
       }
 
@@ -279,7 +279,7 @@ const BoxTokenField = ({ value, onChange }: BoxTokenFieldProps) => {
 
         const popup = window.open(
           data.data.authorization_url,
-          'ragflow-box-oauth',
+          'yourrag-box-oauth',
           'width=600,height=720',
         );
         if (!popup) {

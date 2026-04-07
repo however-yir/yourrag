@@ -181,7 +181,7 @@ async def chat_completion_openai_like(tenant_id, chat_id):
     import json
 
     model = "model"
-    client = OpenAI(api_key="ragflow-api-key", base_url=f"http://ragflow_address/api/v1/chats_openai/<chat_id>")
+    client = OpenAI(api_key="yourrag-api-key", base_url=f"http://ragflow_address/api/v1/chats_openai/<chat_id>")
 
     stream = True
     reference = True

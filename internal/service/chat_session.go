@@ -25,8 +25,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"ragflow/internal/dao"
-	"ragflow/internal/entity"
+	"yourrag/internal/dao"
+	"yourrag/internal/entity"
 )
 
 // ChatSessionService chat session (conversation) service

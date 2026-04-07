@@ -19,18 +19,18 @@ package service
 import (
 	"context"
 	"fmt"
-	"ragflow/internal/entity"
-	"ragflow/internal/server"
+	"yourrag/internal/entity"
+	"yourrag/internal/server"
 	"strings"
 
 	"go.uber.org/zap"
 
-	"ragflow/internal/dao"
-	"ragflow/internal/engine"
-	"ragflow/internal/logger"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine"
+	"yourrag/internal/logger"
 
-	"ragflow/internal/service/nlp"
-	"ragflow/internal/utility"
+	"yourrag/internal/service/nlp"
+	"yourrag/internal/utility"
 )
 
 // ChunkService chunk service

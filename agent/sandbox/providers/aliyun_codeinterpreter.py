@@ -153,7 +153,7 @@ class AliyunCodeInterpreterProvider(SandboxProvider):
                 template_name = self.template_name
             else:
                 # Try to get default template, or create one if it doesn't exist
-                default_template_name = f"ragflow-{language}-default"
+                default_template_name = f"yourrag-{language}-default"
                 try:
                     # Check if template exists
                     Template.get_by_name(default_template_name, config=self._config)

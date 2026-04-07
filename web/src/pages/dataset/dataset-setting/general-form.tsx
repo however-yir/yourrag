@@ -1,7 +1,7 @@
 import { AvatarUpload } from '@/components/avatar-upload';
 import { SelectWithSearch } from '@/components/originui/select-with-search';
 import PageRankFormField from '@/components/page-rank-form-field';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import {
   FormControl,
   FormField,

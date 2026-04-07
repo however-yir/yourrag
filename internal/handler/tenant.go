@@ -23,9 +23,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/common"
-	"ragflow/internal/engine"
-	"ragflow/internal/service"
+	"yourrag/internal/common"
+	"yourrag/internal/engine"
+	"yourrag/internal/service"
 )
 
 // TenantHandler tenant handler

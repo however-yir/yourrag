@@ -17,7 +17,7 @@ To access the RAGFlow admin UI, append `/admin` to the web UI's address, e.g. `h
 ### Default Credentials
 | Username           | Password |
 |--------------------|----------|
-| `admin@ragflow.io` | `admin`  |
+| `admin@yourrag.local` | `admin`  |
 
 ## Admin UI Overview
 

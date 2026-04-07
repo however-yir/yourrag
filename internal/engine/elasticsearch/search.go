@@ -28,8 +28,8 @@ import (
 	"github.com/elastic/go-elasticsearch/v8/esapi"
 	"go.uber.org/zap"
 
-	"ragflow/internal/engine/types"
-	"ragflow/internal/logger"
+	"yourrag/internal/engine/types"
+	"yourrag/internal/logger"
 )
 
 // SearchRequest Elasticsearch search request (legacy, kept for backward compatibility)

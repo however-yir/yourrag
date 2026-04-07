@@ -1,5 +1,5 @@
 import { IconFontFill } from '@/components/icon-font';
-import { RAGFlowAvatar } from '@/components/ragflow-avatar';
+import { RAGFlowAvatar } from '@/components/yourrag-avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

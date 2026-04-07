@@ -19,13 +19,13 @@ package service
 import (
 	"context"
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"strings"
 	"time"
 
-	"ragflow/internal/common"
-	"ragflow/internal/dao"
-	"ragflow/internal/engine"
+	"yourrag/internal/common"
+	"yourrag/internal/dao"
+	"yourrag/internal/engine"
 )
 
 // TenantService tenant service

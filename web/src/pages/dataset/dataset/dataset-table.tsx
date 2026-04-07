@@ -17,7 +17,7 @@ import { ChunkMethodDialog } from '@/components/chunk-method-dialog';
 import { EmptyType } from '@/components/empty/constant';
 import Empty from '@/components/empty/empty';
 import { RenameDialog } from '@/components/rename-dialog';
-import { RAGFlowPagination } from '@/components/ui/ragflow-pagination';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import {
   Table,
   TableBody,

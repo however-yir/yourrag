@@ -19,7 +19,7 @@ package utility
 import (
 	"encoding/json"
 	"fmt"
-	"ragflow/internal/logger"
+	"yourrag/internal/logger"
 	"sync/atomic"
 	"time"
 
@@ -46,7 +46,7 @@ func NewStatusMessage(id int, version string, nodeName string, extInfo string) *
 
 func StatusMessageSending() {
 	// Construct status message
-	statusMessage := NewStatusMessage(0, "v1", "ragflow", "")
+	statusMessage := NewStatusMessage(0, "v1", "yourrag", "")
 
 	// Serialize to JSON
 	jsonData, err := json.Marshal(statusMessage)

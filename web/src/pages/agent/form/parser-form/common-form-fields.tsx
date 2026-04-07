@@ -8,7 +8,7 @@ import {
   SelectWithSearch,
   SelectWithSearchFlagOptionType,
 } from '@/components/originui/select-with-search';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import { upperCase, upperFirst } from 'lodash';
 import { useTranslation } from 'react-i18next';

@@ -40,7 +40,7 @@ import {
   util,
 } from '../../components/metedata/hooks/use-manage-modal';
 
-import { RAGFlowAvatar } from '@/components/ragflow-avatar';
+import { RAGFlowAvatar } from '@/components/yourrag-avatar';
 import {
   IBuiltInMetadataItem,
   IMetaDataReturnJSONSettings,

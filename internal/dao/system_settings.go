@@ -18,7 +18,7 @@ package dao
 
 import (
 	"errors"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"time"
 
 	"gorm.io/gorm"

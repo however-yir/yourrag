@@ -36,7 +36,7 @@ The RAGFlow CLI is a command-line-based system administration tool that offers a
 
 ## Default administrative account
 
-- Username: admin@ragflow.io
+- Username: admin@yourrag.local
 - Password: admin
 
 ## Supported Commands
@@ -283,7 +283,7 @@ Listing all users
 +-------------------------------+----------------------+-----------+----------+
 | create_date                   | email                | is_active | nickname |
 +-------------------------------+----------------------+-----------+----------+
-| Mon, 22 Sep 2025 10:59:04 GMT | admin@ragflow.io     | 1         | admin    |
+| Mon, 22 Sep 2025 10:59:04 GMT | admin@yourrag.local     | 1         | admin    |
 | Sun, 14 Sep 2025 17:36:27 GMT | lynn_inf@hotmail.com | 1         | Lynn     |
 +-------------------------------+----------------------+-----------+----------+
 ```
@@ -293,13 +293,13 @@ Listing all users
 - Show specified user.
 
 ```
-ragflow> show user "admin@ragflow.io";
-command: show user "admin@ragflow.io";
-Showing user: admin@ragflow.io
+ragflow> show user "admin@yourrag.local";
+command: show user "admin@yourrag.local";
+Showing user: admin@yourrag.local
 +-------------------------------+------------------+-----------+--------------+------------------+--------------+----------+-----------------+---------------+--------+-------------------------------+
 | create_date                   | email            | is_active | is_anonymous | is_authenticated | is_superuser | language | last_login_time | login_channel | status | update_date                   |
 +-------------------------------+------------------+-----------+--------------+------------------+--------------+----------+-----------------+---------------+--------+-------------------------------+
-| Mon, 22 Sep 2025 10:59:04 GMT | admin@ragflow.io | 1         | 0            | 1                | True         | Chinese  | None            | None          | 1      | Mon, 22 Sep 2025 10:59:04 GMT |
+| Mon, 22 Sep 2025 10:59:04 GMT | admin@yourrag.local | 1         | 0            | 1                | True         | Chinese  | None            | None          | 1      | Mon, 22 Sep 2025 10:59:04 GMT |
 +-------------------------------+------------------+-----------+--------------+------------------+--------------+----------+-----------------+---------------+--------+-------------------------------+
 ```
 
@@ -535,7 +535,7 @@ ragflow> list envs;
 | env                     | value            |
 +-------------------------+------------------+
 | DOC_ENGINE              | elasticsearch    |
-| DEFAULT_SUPERUSER_EMAIL | admin@ragflow.io |
+| DEFAULT_SUPERUSER_EMAIL | admin@yourrag.local |
 | DB_TYPE                 | mysql            |
 | DEVICE                  | cpu              |
 | STORAGE_IMPL            | MINIO            |

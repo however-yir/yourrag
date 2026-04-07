@@ -19,7 +19,7 @@ from enum import Enum, IntEnum
 from strenum import StrEnum
 
 SERVICE_CONF = "service_conf.yaml"
-RAG_FLOW_SERVICE_NAME = "ragflow"
+RAG_FLOW_SERVICE_NAME = "yourrag"
 SANDBOX_ARTIFACT_BUCKET = os.environ.get("SANDBOX_ARTIFACT_BUCKET", "sandbox-artifacts")
 SANDBOX_ARTIFACT_EXPIRE_DAYS = int(os.environ.get("SANDBOX_ARTIFACT_EXPIRE_DAYS", "7"))
 

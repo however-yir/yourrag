@@ -30,8 +30,8 @@ import (
 	"github.com/redis/go-redis/v9"
 	"go.uber.org/zap"
 
-	"ragflow/internal/logger"
-	"ragflow/internal/server"
+	"yourrag/internal/logger"
+	"yourrag/internal/server"
 )
 
 var (

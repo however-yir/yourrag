@@ -19,8 +19,8 @@ package infinity
 import (
 	"context"
 	"fmt"
-	"ragflow/internal/engine/types"
-	"ragflow/internal/utility"
+	"yourrag/internal/engine/types"
+	"yourrag/internal/utility"
 	"strings"
 	"unicode/utf8"
 

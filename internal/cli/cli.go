@@ -32,7 +32,7 @@ import (
 	"golang.org/x/term"
 	"gopkg.in/yaml.v3"
 
-	"ragflow/internal/cli/contextengine"
+	"yourrag/internal/cli/contextengine"
 )
 
 // ConfigFile represents the rf.yml configuration file structure
@@ -290,7 +290,7 @@ func ParseConnectionArgs(args []string) (*ConnectionArgs, error) {
 	if result.AdminMode {
 		result.APIToken = ""
 		if result.UserName == "" {
-			result.UserName = "admin@ragflow.io"
+			result.UserName = "admin@yourrag.local"
 			result.Password = ""
 		}
 	} else {

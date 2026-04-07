@@ -16,7 +16,7 @@ package nlp
 
 import (
 	"math"
-	"ragflow/internal/engine"
+	"yourrag/internal/engine"
 	"sort"
 	"strconv"
 	"strings"

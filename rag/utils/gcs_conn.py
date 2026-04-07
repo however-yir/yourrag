@@ -50,7 +50,7 @@ class RAGFlowGCS:
         return f"{folder}/{filename}"
 
     def health(self):
-        folder, fnm, binary = "ragflow-health", "health_check", b"_t@@@1"
+        folder, fnm, binary = "yourrag-health", "health_check", b"_t@@@1"
         try:
             bucket_obj = self.client.bucket(self.bucket_name)
             if not bucket_obj.exists():

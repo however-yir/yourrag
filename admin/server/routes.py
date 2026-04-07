@@ -502,7 +502,7 @@ def generate_user_api_key(username: str) -> tuple[Response, int]:
         obj: dict[str, Any] = {
             "tenant_id": tenant_id,
             "token": key,
-            "beta": generate_confirmation_token().replace("ragflow-", "")[:32],
+            "beta": generate_confirmation_token().replace("yourrag-", "")[:32],
             "create_time": current_timestamp(),
             "create_date": datetime_format(datetime.now()),
             "update_time": None,

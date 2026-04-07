@@ -151,7 +151,7 @@ def _get_or_create_secret_key():
     import logging
 
     generated_key = secrets.token_hex(32)
-    secret_key = REDIS_CONN.get_or_create_secret_key("ragflow:system:secret_key", generated_key)
+    secret_key = REDIS_CONN.get_or_create_secret_key("yourrag:system:secret_key", generated_key)
     logging.warning("SECURITY WARNING: Using auto-generated SECRET_KEY.")
     return secret_key
 
@@ -410,4 +410,3 @@ def _resolve_per_model_config(entry_dict, backup_factory, backup_api_key, backup
 def print_rag_settings():
     logging.info(f"MAX_CONTENT_LENGTH: {DOC_MAXIMUM_SIZE}")
     logging.info(f"MAX_FILE_COUNT_PER_USER: {int(os.environ.get('MAX_FILE_NUM_PER_USER', 0))}")
-

@@ -49,7 +49,7 @@ class TestGenerateUserApiKey:
         assert "create_time" in result, "Response should contain create_time"
         assert "create_date" in result, "Response should contain create_date"
 
-        # Verify token format (should start with "ragflow-")
+        # Verify token format (should start with "yourrag-")
         token: str = result["token"]
         assert isinstance(token, str), "Token should be a string"
         assert len(token) > 0, "Token should not be empty"
@@ -59,8 +59,8 @@ class TestGenerateUserApiKey:
         assert isinstance(beta, str), "Beta should be a string"
         assert len(beta) == 32, "Beta should be 32 characters"
         # Beta should be independent from token (not derived from it)
-        if token.startswith("ragflow-"):
-            token_without_prefix: str = token.replace("ragflow-", "")[:32]
+        if token.startswith("yourrag-"):
+            token_without_prefix: str = token.replace("yourrag-", "")[:32]
             assert beta != token_without_prefix, "Beta should be independently generated, not derived from token"
 
     @pytest.mark.p2
@@ -189,8 +189,8 @@ class TestGenerateUserApiKey:
         assert isinstance(beta, str), "Beta should be a string"
         assert len(beta) == 32, "Beta should be 32 characters"
         # Beta should be independent from token (not derived from it)
-        if token.startswith("ragflow-"):
-            token_without_prefix: str = token.replace("ragflow-", "")[:32]
+        if token.startswith("yourrag-"):
+            token_without_prefix: str = token.replace("yourrag-", "")[:32]
             assert beta != token_without_prefix, "Beta should be independently generated, not derived from token"
 
     @pytest.mark.p1

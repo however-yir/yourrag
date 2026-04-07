@@ -20,7 +20,7 @@ import (
 	"errors"
 	"fmt"
 	"path"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"regexp"
 	"strconv"
 	"strings"
@@ -28,7 +28,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"ragflow/internal/dao"
+	"yourrag/internal/dao"
 )
 
 const (

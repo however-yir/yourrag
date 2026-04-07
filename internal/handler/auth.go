@@ -19,10 +19,10 @@ package handler
 import (
 	"fmt"
 	"net/http"
-	"ragflow/internal/common"
-	"ragflow/internal/logger"
-	"ragflow/internal/server/local"
-	"ragflow/internal/service"
+	"yourrag/internal/common"
+	"yourrag/internal/logger"
+	"yourrag/internal/server/local"
+	"yourrag/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

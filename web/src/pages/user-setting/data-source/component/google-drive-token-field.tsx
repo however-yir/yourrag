@@ -203,7 +203,7 @@ const GoogleDriveTokenField = ({
   useEffect(() => {
     const handler = (event: MessageEvent) => {
       const payload = event.data;
-      if (!payload || payload.type !== 'ragflow-google-drive-oauth') {
+      if (!payload || payload.type !== 'yourrag-google-drive-oauth') {
         return;
       }
       if (!payload.flowId) {
@@ -295,7 +295,7 @@ const GoogleDriveTokenField = ({
         const flowId = data.data.flow_id;
         const popup = window.open(
           data.data.authorization_url,
-          'ragflow-google-drive-oauth',
+          'yourrag-google-drive-oauth',
           'width=600,height=720',
         );
         if (!popup) {

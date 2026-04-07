@@ -19,7 +19,7 @@ package service
 import (
 	"context"
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 )
 
 // ModelBundle provides a unified interface for various model operations

@@ -375,7 +375,7 @@ def get_error_operating_result(message="Operating error"):
 def generate_confirmation_token():
     import secrets
 
-    return "ragflow-" + secrets.token_urlsafe(32)
+    return "yourrag-" + secrets.token_urlsafe(32)
 
 
 def get_parser_config(chunk_method, parser_config):

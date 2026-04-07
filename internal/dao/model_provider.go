@@ -17,7 +17,7 @@
 package dao
 
 import (
-	"ragflow/internal/server"
+	"yourrag/internal/server"
 	"sync"
 )
 

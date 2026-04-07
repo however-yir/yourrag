@@ -1,4 +1,4 @@
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { Input } from '@/components/ui/input';
 import { t } from 'i18next';
 import { PropsWithChildren } from 'react';

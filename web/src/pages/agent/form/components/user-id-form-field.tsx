@@ -1,4 +1,4 @@
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { useTranslation } from 'react-i18next';
 import { PromptEditor } from './prompt-editor';
 

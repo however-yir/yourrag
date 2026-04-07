@@ -25,8 +25,8 @@ import (
 	"time"
 
 	infinity "github.com/infiniflow/infinity-go-sdk"
-	"ragflow/internal/server"
-	"ragflow/internal/logger"
+	"yourrag/internal/server"
+	"yourrag/internal/logger"
 )
 
 // infinityClient Infinity SDK client wrapper

@@ -1,6 +1,6 @@
 import { Collapse } from '@/components/collapse';
 import { SelectWithSearch } from '@/components/originui/select-with-search';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import {
   WebhookContentType,
   WebhookRequestParameters,

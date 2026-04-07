@@ -1,6 +1,6 @@
 import { DelimiterInput } from '@/components/delimiter-form-field';
 import { FormFieldType, RenderField } from '@/components/dynamic-form';
-import { RAGFlowFormItem } from '@/components/ragflow-form';
+import { RAGFlowFormItem } from '@/components/yourrag-form';
 import { SliderInputFormField } from '@/components/slider-input-form-field';
 import { BlockButton, Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';

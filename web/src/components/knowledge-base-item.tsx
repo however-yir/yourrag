@@ -6,7 +6,7 @@ import { toLower } from 'lodash';
 import { useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { RAGFlowAvatar } from './ragflow-avatar';
+import { RAGFlowAvatar } from './yourrag-avatar';
 import { FormControl, FormField, FormItem, FormLabel } from './ui/form';
 import { MultiSelect } from './ui/multi-select';
 

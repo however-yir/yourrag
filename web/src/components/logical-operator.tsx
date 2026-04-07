@@ -1,5 +1,5 @@
 import { useBuildSwitchLogicOperatorOptions } from '@/hooks/logic-hooks/use-build-options';
-import { RAGFlowFormItem } from './ragflow-form';
+import { RAGFlowFormItem } from './yourrag-form';
 import { RAGFlowSelect } from './ui/select';
 
 type LogicalOperatorProps = { name: string };

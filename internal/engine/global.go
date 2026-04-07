@@ -18,14 +18,14 @@ package engine
 
 import (
 	"fmt"
-	"ragflow/internal/server"
+	"yourrag/internal/server"
 	"sync"
 
 	"go.uber.org/zap"
 
-	"ragflow/internal/engine/elasticsearch"
-	"ragflow/internal/engine/infinity"
-	"ragflow/internal/logger"
+	"yourrag/internal/engine/elasticsearch"
+	"yourrag/internal/engine/infinity"
+	"yourrag/internal/logger"
 )
 
 var (

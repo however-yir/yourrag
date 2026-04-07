@@ -18,11 +18,11 @@ package handler
 
 import (
 	"net/http"
-	"ragflow/internal/common"
+	"yourrag/internal/common"
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/service"
+	"yourrag/internal/service"
 )
 
 // ConnectorHandler connector handler

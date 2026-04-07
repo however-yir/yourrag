@@ -28,8 +28,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"ragflow/internal/common"
-	"ragflow/internal/service"
+	"yourrag/internal/common"
+	"yourrag/internal/service"
 )
 
 // MemoryHandler handles Memory-related HTTP requests

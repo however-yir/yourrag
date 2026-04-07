@@ -22,14 +22,14 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"strings"
 	"time"
 
-	"ragflow/internal/logger"
+	"yourrag/internal/logger"
 
-	"ragflow/internal/server"
-	"ragflow/internal/utility"
+	"yourrag/internal/server"
+	"yourrag/internal/utility"
 
 	"go.uber.org/zap"
 	gormLogger "gorm.io/gorm/logger"

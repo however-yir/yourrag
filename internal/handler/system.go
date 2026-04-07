@@ -18,9 +18,9 @@ package handler
 
 import (
 	"net/http"
-	"ragflow/internal/logger"
-	"ragflow/internal/server"
-	"ragflow/internal/service"
+	"yourrag/internal/logger"
+	"yourrag/internal/server"
+	"yourrag/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

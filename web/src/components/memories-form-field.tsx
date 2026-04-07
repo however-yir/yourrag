@@ -1,6 +1,6 @@
 import { useFetchAllMemoryList } from '@/hooks/use-memory-request';
 import { useTranslation } from 'react-i18next';
-import { RAGFlowFormItem } from './ragflow-form';
+import { RAGFlowFormItem } from './yourrag-form';
 import { MultiSelect } from './ui/multi-select';
 
 type MemoriesFormFieldProps = {

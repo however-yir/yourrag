@@ -17,8 +17,8 @@
 package service
 
 import (
-	"ragflow/internal/server"
-	"ragflow/internal/utility"
+	"yourrag/internal/server"
+	"yourrag/internal/utility"
 )
 
 // SystemService system service

@@ -19,14 +19,14 @@ package service
 import (
 	"errors"
 	"fmt"
-	"ragflow/internal/entity"
+	"yourrag/internal/entity"
 	"strings"
 	"time"
 	"unicode/utf8"
 
 	"github.com/google/uuid"
 
-	"ragflow/internal/dao"
+	"yourrag/internal/dao"
 )
 
 // ChatService chat service

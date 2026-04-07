@@ -22,8 +22,8 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
-	"ragflow/internal/logger"
-	"ragflow/internal/server"
+	"yourrag/internal/logger"
+	"yourrag/internal/server"
 	"time"
 
 	"github.com/minio/minio-go/v7"
