@@ -1,8 +1,26 @@
 # YourRAG
 
+[![Tests](https://github.com/however-yir/yourrag/actions/workflows/tests.yml/badge.svg)](https://github.com/however-yir/yourrag/actions/workflows/tests.yml)
+[![Docs](https://img.shields.io/badge/docs-deployment-0A7EFA)](https://github.com/however-yir/yourrag/tree/main/docs)
+[![License](https://img.shields.io/badge/license-Apache--2.0-16A34A)](./LICENSE)
+[![Status](https://img.shields.io/badge/status-active-2563EB)](https://github.com/however-yir/yourrag)
+
+> Status: `active`
+>
+> Upstream: `infiniflow/ragflow`
+>
+> Series: [local-ai-hub](https://github.com/however-yir/local-ai-hub) · [LZKB](https://github.com/however-yir/LZKB)
+
 ![YourRAG Logo](./assets/yourrag-logo.svg)
 
 YourRAG 是一个基于 RAGFlow 深度改造的私有化 RAG + Agent 平台，目标是用于你的自有品牌交付与可持续二开。
+
+## 项目快照
+
+- 定位：企业交付导向的私有 RAG + Agent 平台。
+- 亮点：RAGFlow 深度改造、部署形态完整、默认安全收敛、CI 通用化。
+- 最短运行路径：`cd docker && docker compose --env-file .env.local -f docker-compose.yml up -d`
+- 系列分工：`YourRAG` 面向企业 RAG/Agent 交付，`LZKB` 面向知识平台，`Local AI Hub` 面向本地工作台。
 
 ## 核心定位
 
