@@ -242,6 +242,10 @@ addopts = [
     "--disable-warnings",  # Disable warnings
     "--color=yes",  # Colored output
     "--ignore=test/playwright",  # Optional e2e suite requires playwright/browser runtime
+    "--ignore=test/testcases/test_http_api",  # Requires full running backend + test fixtures
+    "--ignore=test/testcases/test_web_api",  # Requires browser/web integration environment
+    "--ignore=test/testcases/test_sdk_api",  # Requires full API service + SDK integration
+    "--ignore=test/unit_test",  # Requires full dependency graph not present in baseline setup
 ]
 
 

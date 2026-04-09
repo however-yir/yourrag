@@ -6,7 +6,7 @@ from enum import IntFlag, auto
 from types import TracebackType
 from typing import Any, Dict, Generator, TypeVar, Generic, Callable, TypeAlias
 from collections.abc import Iterator
-from anthropic import BaseModel
+from pydantic import BaseModel
 
 from common.data_source.models import (
     Document,
@@ -416,4 +416,3 @@ class IndexingHeartbeatInterface(ABC):
         Amount can be a positive number to indicate progress or <= 0
         just to act as a keep-alive.
         """
-
