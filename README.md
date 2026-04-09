@@ -1,4 +1,4 @@
-# YourRAG
+# YourRAG - 企业级私有检索增强平台 | Enterprise Private RAG Platform
 
 [![Tests](https://github.com/however-yir/yourrag/actions/workflows/tests.yml/badge.svg)](https://github.com/however-yir/yourrag/actions/workflows/tests.yml)
 [![Docs](https://img.shields.io/badge/docs-deployment-0A7EFA)](https://github.com/however-yir/yourrag/tree/main/docs)
