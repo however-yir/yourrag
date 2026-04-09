@@ -240,7 +240,8 @@ addopts = [
     "--strict-markers",  # Enforce marker definitions
     "--tb=short",  # Simplified traceback
     "--disable-warnings",  # Disable warnings
-    "--color=yes"  # Colored output
+    "--color=yes",  # Colored output
+    "--ignore=test/playwright",  # Optional e2e suite requires playwright/browser runtime
 ]
 
 

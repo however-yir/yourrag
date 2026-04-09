@@ -93,7 +93,7 @@ _install_scholarly_stub()
 
 import pytest
 import requests
-from configs import EMAIL, HOST_ADDRESS, PASSWORD, VERSION, ZHIPU_AI_API_KEY
+from configs import EMAIL, HAS_ZHIPU_AI_API_KEY, HOST_ADDRESS, PASSWORD, VERSION, ZHIPU_AI_API_KEY
 
 MARKER_EXPRESSIONS = {
     "p1": "p1",
@@ -125,6 +125,14 @@ def pytest_configure(config: pytest.Config) -> None:
     config.option.markexpr = MARKER_EXPRESSIONS[level]
     if config.option.verbose > 0:
         print(f"\n[CONFIG] Active test level: {level}")
+
+
+def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:
+    if HAS_ZHIPU_AI_API_KEY:
+        return
+    skip_no_api_key = pytest.mark.skip(reason="ZHIPU_AI_API_KEY not set; skipping integration tests")
+    for item in items:
+        item.add_marker(skip_no_api_key)
 
 
 def register():
