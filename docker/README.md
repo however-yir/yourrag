@@ -22,7 +22,14 @@
 
 ## 🐬 Docker environment variables
 
-The [.env](./.env) file contains important environment variables for Docker.
+Use [`.env.example`](./.env.example) as the template and copy it to a local file (for example `.env.local`) before running compose.
+
+```bash
+cp .env.example .env.local
+docker compose --env-file .env.local -f docker-compose.yml up -d
+```
+
+For lower-resource local testing, use [`.env.local.lite.example`](./.env.local.lite.example).
 
 ### Elasticsearch
 
