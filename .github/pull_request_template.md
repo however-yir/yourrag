@@ -1,12 +1,18 @@
-### What problem does this PR solve?
+## Summary
+- What changed and why
 
-_Briefly describe what this PR aims to solve. Include background context that will help reviewers understand the purpose of the PR._
+## Linked Issue
+- Closes #
 
-### Type of change
+## Test Evidence
+- Unit/Integration:
+- Manual verification:
+- Logs/Screenshots:
 
-- [ ] Bug Fix (non-breaking change which fixes an issue)
-- [ ] New Feature (non-breaking change which adds functionality)
-- [ ] Documentation Update
-- [ ] Refactoring
-- [ ] Performance Improvement
-- [ ] Other (please describe):
+## Risk
+- Potential impact:
+- Affected modules:
+
+## Rollback
+- How to revert safely:
+- Data/config rollback notes:
