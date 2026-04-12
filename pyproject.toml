@@ -118,7 +118,7 @@ dependencies = [
     "word2number==1.1",
     "xgboost==1.6.0",
     "xpinyin==0.7.6",
-    "yfinance==0.2.65",
+    "yfinance==1.2.1",
     "zhipuai==2.0.1",
     "peewee>=3.17.1,<4.0.0",
     #    following modules aren't necessary
