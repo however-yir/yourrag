@@ -112,3 +112,16 @@ docker compose --env-file .env.local.lite -f docker-compose.yml up -d
 - 本项目基于上游 RAGFlow 进行二次开发。
 - 继续遵循 Apache-2.0（见 `LICENSE`）。
 - 归属与附加说明见 `NOTICE` 与 `LICENSE-ADDITIONAL.md`。
+## Engineering Quality
+
+This repository includes a contract-based quality baseline to keep essential engineering standards stable over time.
+
+- Quality plan: [docs/ENGINEERING_QUALITY.md](docs/ENGINEERING_QUALITY.md)
+- Contract tests: [tests/repo_contract_test.sh](tests/repo_contract_test.sh)
+- Contract CI workflow: [.github/workflows/repo-contract-ci.yml](.github/workflows/repo-contract-ci.yml)
+
+Run local contract checks:
+
+```bash
+bash tests/repo_contract_test.sh
+```
