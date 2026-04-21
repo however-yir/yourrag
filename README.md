@@ -16,6 +16,11 @@
 >
 > Series: [local-ai-hub](https://github.com/however-yir/local-ai-hub) · [LZKB](https://github.com/however-yir/LZKB)
 
+> **非官方声明（Non-Affiliation）**<br>
+> `YourRAG` 是基于 `infiniflow/ragflow` 的社区维护衍生版，与上游项目及其权利主体不存在官方关联、授权背书或从属关系。<br>
+> **商标声明（Trademark Notice）**<br>
+> `RAGFlow` 及相关项目名称、Logo 与商标归其各自权利人所有；本仓库仅用于说明上游来源与兼容关系。
+
 ![YourRAG Logo](./assets/yourrag-logo.svg)
 
 YourRAG 是一个基于 RAGFlow 深度改造的私有化 RAG + Agent 平台，目标是用于你的自有品牌交付与可持续二开。

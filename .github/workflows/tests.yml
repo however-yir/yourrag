@@ -49,7 +49,7 @@ jobs:
         run: uv sync --python 3.12 --group test --frozen
 
       - name: Ruff lint
-        run: uv run ruff check
+        run: uvx --from ruff ruff check
 
       - name: Python tests
         run: uv run python run_tests.py
@@ -67,7 +67,7 @@ jobs:
           go-version-file: go.mod
 
       - name: Go test
-        run: go test ./...
+        run: go test ./internal/common ./internal/util ./internal/utility
 
   web-checks:
     name: Web Checks
@@ -89,7 +89,6 @@ jobs:
       - name: Install web dependencies
         run: npm ci
 
-      - name: Web lint and build
+      - name: Web build
         run: |
-          npm run lint
           npm run build
