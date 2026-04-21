@@ -6299,7 +6299,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ragflow"
+name = "yourrag"
 version = "0.24.0"
 source = { virtual = "." }
 dependencies = [
