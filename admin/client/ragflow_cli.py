@@ -17,6 +17,7 @@
 import sys
 import argparse
 import getpass
+import base64
 from cmd import Cmd
 from typing import Any, Dict, List
 
