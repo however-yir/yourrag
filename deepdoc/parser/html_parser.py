@@ -15,11 +15,23 @@
 #  limitations under the License.
 #
 
+import logging
 from rag.nlp import find_codec, rag_tokenizer
 import uuid
 import chardet
 from bs4 import BeautifulSoup, NavigableString, Tag, Comment
 import html
+
+logger = logging.getLogger(__name__)
+
+
+def _safe_tokenize(text):
+    """Tokenize text with a graceful fallback when optional NLTK resources are unavailable."""
+    try:
+        return rag_tokenizer.tokenize(text)
+    except LookupError as exc:
+        logger.warning("Tokenizer resources unavailable, falling back to whitespace tokenization: %s", exc)
+        return " ".join((text or "").split())
 
 def get_encoding(file):
     with open(file,'rb') as f:
@@ -84,7 +96,7 @@ class RAGFlowHtmlParser:
         current_count = 0
         table_str_list = []
         for row in rows:
-            tks_str = rag_tokenizer.tokenize(str(row))
+            tks_str = _safe_tokenize(str(row))
             token_count = len(tks_str.split(" ")) if tks_str else 0
             if current_count + token_count > chunk_token_num:
                 tables.append(current_table)
@@ -183,7 +195,7 @@ class RAGFlowHtmlParser:
         current_token_count = 0
 
         for block in block_txt_list:
-            tks_str = rag_tokenizer.tokenize(block)
+            tks_str = _safe_tokenize(block)
             block_token_count = len(tks_str.split(" ")) if tks_str else 0
             if block_token_count > chunk_token_num:
                 if current_block:
@@ -210,4 +222,3 @@ class RAGFlowHtmlParser:
             chunks.append(current_block)
 
         return chunks
-
