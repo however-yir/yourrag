@@ -49,7 +49,7 @@ jobs:
         run: uv sync --python 3.12 --group test --frozen
 
       - name: Ruff lint
-        run: uv run ruff check
+        run: uvx --from ruff ruff check
 
       - name: Python tests
         run: uv run python run_tests.py
