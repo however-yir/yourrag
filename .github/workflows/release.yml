@@ -41,7 +41,7 @@ jobs:
 
       - name: Prepare release body
         run: |
-          if [[ ${GITHUB_EVENT_NAME} != "schedule" ]]; then
+          if [[ ${GITHUB_EVENT_NAME} == "push" ]]; then
             RELEASE_TAG=${GITHUB_REF#refs/tags/}
             if [[ ${RELEASE_TAG} == v* ]]; then
               PRERELEASE=false
@@ -52,7 +52,7 @@ jobs:
           else
             RELEASE_TAG=nightly
             PRERELEASE=true
-            echo "Workflow triggered by schedule"
+            echo "Workflow triggered by ${GITHUB_EVENT_NAME}"
           fi
           echo "RELEASE_TAG=${RELEASE_TAG}" >> ${GITHUB_ENV}
           echo "PRERELEASE=${PRERELEASE}" >> ${GITHUB_ENV}
