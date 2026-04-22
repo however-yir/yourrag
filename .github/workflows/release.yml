@@ -85,9 +85,25 @@ jobs:
           # The body field does not support environment variable substitution directly.
           body_path: release_body.md
 
-      - name: Build and push image
+      - name: Check DockerHub token
+        id: dockerhub
         run: |
-          sudo docker login --username infiniflow --password-stdin <<< ${{ secrets.DOCKERHUB_TOKEN }}
+          if [[ -n "${{ secrets.DOCKERHUB_TOKEN }}" ]]; then
+            echo "has_token=true" >> "${GITHUB_OUTPUT}"
+            echo "DOCKERHUB_TOKEN is configured."
+          else
+            if [[ "${GITHUB_EVENT_NAME}" == "push" ]]; then
+              echo "::error::DOCKERHUB_TOKEN is required for tag release image publishing."
+              exit 1
+            fi
+            echo "::notice::DOCKERHUB_TOKEN is not configured; skipping image build/push for ${GITHUB_EVENT_NAME}."
+            echo "has_token=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Build and push image
+        if: steps.dockerhub.outputs.has_token == 'true'
+        run: |
+          sudo docker login --username infiniflow --password-stdin <<< "${{ secrets.DOCKERHUB_TOKEN }}"
           sudo docker build --build-arg NEED_MIRROR=1 --build-arg HTTPS_PROXY=${HTTPS_PROXY} --build-arg HTTP_PROXY=${HTTP_PROXY} -t infiniflow/ragflow:${RELEASE_TAG} -f Dockerfile .
           sudo docker tag infiniflow/ragflow:${RELEASE_TAG} infiniflow/ragflow:latest
           sudo docker push infiniflow/ragflow:${RELEASE_TAG}
