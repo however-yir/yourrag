@@ -3,6 +3,7 @@ name: release
 on:
   schedule:
     - cron: '0 13 * * *'  # This schedule runs every 13:00:00Z(21:00:00+08:00)
+  workflow_dispatch:
   # https://github.com/orgs/community/discussions/26286?utm_source=chatgpt.com#discussioncomment-3251208
   # "The create event does not support branch filter and tag filter."
   # The "create tags" trigger is specifically focused on the creation of new tags, while the "push tags" trigger is activated when tags are pushed, including both new tag creations and updates to existing tags.
@@ -23,7 +24,9 @@ concurrency:
 
 jobs:
   release:
-    runs-on: [ "self-hosted", "ragflow-release" ]
+    # Optional override:
+    # RELEASE_RUNNER_LABELS='["self-hosted","ragflow-release"]'
+    runs-on: ${{ fromJSON(vars.RELEASE_RUNNER_LABELS || '["ubuntu-latest"]') }}
     steps:
       - name: Ensure workspace ownership
         run: echo "chown -R ${USER} ${GITHUB_WORKSPACE}" && sudo chown -R ${USER} ${GITHUB_WORKSPACE}
