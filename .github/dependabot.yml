@@ -18,10 +18,9 @@ updates:
       - "python"
     groups:
       security-updates:
+        applies-to: security-updates
         patterns:
           - "*"
-        update-types:
-          - "security"
 
   - package-ecosystem: "npm"
     directory: "/web"
