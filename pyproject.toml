@@ -158,6 +158,7 @@ dependencies = [
     "python-gitlab>=7.0.0",
     "alibabacloud-dingtalk>=2.0.0",
     "quart-schema==0.23.0",
+    "psutil>=5.9.0",
 ]
 
 [dependency-groups]

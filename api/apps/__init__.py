@@ -57,7 +57,10 @@ def _unauthorized_message(error):
         return UNAUTHORIZED_MESSAGE
 
 app = Quart(__name__)
-app = cors(app, allow_origin="*")
+_cors_origins = os.environ.get("CORS_ALLOWED_ORIGINS", "*")
+if _cors_origins == "*":
+    logging.warning("CORS: allowing all origins — set CORS_ALLOWED_ORIGINS for production")
+app = cors(app, allow_origin=_cors_origins)
 
 # openapi supported
 QuartSchema(app)
@@ -76,12 +79,116 @@ app.config["BODY_TIMEOUT"] = int(os.environ.get("QUART_BODY_TIMEOUT", 600))
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "redis"
 app.config["SESSION_REDIS"] = settings.decrypt_database_config(name="redis")
-app.config["MAX_CONTENT_LENGTH"] = int(
-    os.environ.get("MAX_CONTENT_LENGTH", 1024 * 1024 * 1024)
-)
+_HARD_MAX_CONTENT_LENGTH = 10 * 1024 * 1024 * 1024  # 10 GiB absolute hard cap
+_configured_max = int(os.environ.get("MAX_CONTENT_LENGTH", 1024 * 1024 * 1024))
+if _configured_max > _HARD_MAX_CONTENT_LENGTH:
+    logging.warning(f"MAX_CONTENT_LENGTH ({_configured_max}) exceeds hard cap ({_HARD_MAX_CONTENT_LENGTH}), clamping")
+    _configured_max = _HARD_MAX_CONTENT_LENGTH
+app.config["MAX_CONTENT_LENGTH"] = _configured_max
 app.config['SECRET_KEY'] = settings.SECRET_KEY
 app.secret_key = settings.SECRET_KEY
 commands.register_commands(app)
+
+# --- Startup default-password guard (item #2) ---
+def _check_default_passwords():
+    default_patterns = [
+        "change_me_elastic_please",
+        "change_me_mysql_please",
+        "change_me_minio_please",
+        "change_me_redis_please",
+        "change_me_please",
+        "change_me_opensearch_please",
+        "change_me_oceanbase_please",
+        "change_me_seekdb_please",
+    ]
+    env_file = os.path.join(settings.get_project_base_directory(), "docker", ".env")
+    found_defaults = []
+    if os.path.isfile(env_file):
+        with open(env_file) as f:
+            content = f.read()
+        for pat in default_patterns:
+            if pat in content:
+                found_defaults.append(pat)
+    if found_defaults:
+        logging.error(
+            "SECURITY: Default passwords detected in .env file. "
+            "Production deployments MUST change all default passwords. "
+            "Set ENFORCE_PRODUCTION_PASSWORDS=0 to bypass this check."
+        )
+        if os.environ.get("ENFORCE_PRODUCTION_PASSWORDS", "1") == "1":
+            raise SystemExit("Refusing to start with default passwords. Set ENFORCE_PRODUCTION_PASSWORDS=0 to override.")
+
+try:
+    _check_default_passwords()
+except SystemExit:
+    raise
+except Exception:
+    logging.debug("Default password check skipped (non-Docker or .env not found)")
+
+# --- Rate limiting middleware (item #6) ---
+import time as _time
+from collections import defaultdict as _defaultdict
+
+_rate_limit_store = _defaultdict(list)
+RATE_LIMIT_RPS = int(os.environ.get("RATE_LIMIT_RPS", "100"))
+RATE_LIMIT_WINDOW = int(os.environ.get("RATE_LIMIT_WINDOW_SECONDS", "60"))
+RATE_LIMIT_BURST = int(os.environ.get("RATE_LIMIT_BURST", "200"))
+
+
+@app.before_request
+def _rate_limit():
+    if not RATE_LIMIT_RPS:
+        return None
+    client_ip = request.headers.get("X-Forwarded-For", request.remote_addr or "unknown")
+    if "," in client_ip:
+        client_ip = client_ip.split(",")[0].strip()
+    now = _time.time()
+    window = _rate_limit_store[client_ip]
+    cutoff = now - RATE_LIMIT_WINDOW
+    window[:] = [t for t in window if t > cutoff]
+    if len(window) >= RATE_LIMIT_BURST:
+        return jsonify({"code": 429, "message": "Rate limit exceeded"}), 429
+    window.append(now)
+    return None
+
+
+# --- Audit logging middleware (item #10) ---
+_audit_logger = logging.getLogger("yourrag.audit")
+
+# --- Prometheus metrics recording (item #12) ---
+try:
+    from api.apps.system_metrics import record_request as _record_request
+except ImportError:
+    _record_request = None
+
+
+@app.after_request
+async def _audit_log(response):
+    if request.method in ("POST", "PUT", "PATCH", "DELETE"):
+        user = getattr(g, "user", None)
+        user_id = getattr(user, "id", "anonymous") if user else "anonymous"
+        client_ip = request.headers.get("X-Forwarded-For", request.remote_addr or "unknown")
+        _audit_logger.info(
+            "audit action=%s path=%s user=%s ip=%s status=%s",
+            request.method,
+            request.path,
+            user_id,
+            client_ip,
+            response.status_code,
+        )
+    # Record Prometheus metrics
+    if _record_request:
+        try:
+            duration = time.perf_counter() - getattr(g, "_req_start", time.perf_counter())
+            _record_request(request.method, request.path, response.status_code, duration)
+        except Exception:
+            pass
+    return response
+
+
+@app.before_request
+def _set_req_start():
+    g._req_start = time.perf_counter()
 
 from functools import wraps
 from typing import ParamSpec, TypeVar
@@ -93,49 +200,62 @@ P = ParamSpec("P")
 
 
 def _load_user():
-    jwt = Serializer(secret_key=settings.SECRET_KEY)
     authorization = request.headers.get("Authorization")
     g.user = None
     if not authorization:
         return None
 
-    try:
-        access_token = str(jwt.loads(authorization))
-
-        if not access_token or not access_token.strip():
-            logging.warning("Authentication attempt with empty access token")
-            return None
-
-        # Access tokens should be UUIDs (32 hex characters)
-        if len(access_token.strip()) < 32:
-            logging.warning(f"Authentication attempt with invalid token format: {len(access_token)} chars")
-            return None
-
-        user = UserService.query(
-            access_token=access_token, status=StatusEnum.VALID.value
-        )
-        if user:
-            if not user[0].access_token or not user[0].access_token.strip():
-                logging.warning(f"User {user[0].email} has empty access_token in database")
-                return None
-            g.user = user[0]
-            return user[0]
-    except Exception as e_auth:
-        logging.warning(f"load_user got exception {e_auth}")
+    # Try primary key, then previous key (rotation support)
+    access_token = None
+    for key in [settings.SECRET_KEY, getattr(settings, "PREVIOUS_SECRET_KEY", "")]:
+        if not key:
+            continue
         try:
-            authorization = request.headers.get("Authorization")
-            if len(authorization.split()) == 2:
-                objs = APIToken.query(token=authorization.split()[1])
-                if objs:
-                    user = UserService.query(id=objs[0].tenant_id, status=StatusEnum.VALID.value)
-                    if user:
-                        if not user[0].access_token or not user[0].access_token.strip():
-                            logging.warning(f"User {user[0].email} has empty access_token in database")
-                            return None
-                        g.user = user[0]
-                        return user[0]
-        except Exception as e_api_token:
-            logging.warning(f"load_user got exception {e_api_token}")
+            jwt_decoder = Serializer(secret_key=key)
+            access_token = str(jwt_decoder.loads(authorization))
+            break
+        except Exception:
+            continue
+
+    if access_token:
+        try:
+            if not access_token.strip():
+                logging.warning("Authentication attempt with empty access token")
+                return None
+
+            # Access tokens should be UUIDs (32 hex characters)
+            if len(access_token.strip()) < 32:
+                logging.warning(f"Authentication attempt with invalid token format: {len(access_token)} chars")
+                return None
+
+            user = UserService.query(
+                access_token=access_token, status=StatusEnum.VALID.value
+            )
+            if user:
+                if not user[0].access_token or not user[0].access_token.strip():
+                    logging.warning(f"User {user[0].email} has empty access_token in database")
+                    return None
+                g.user = user[0]
+                return user[0]
+        except Exception as e_auth:
+            logging.warning(f"load_user got exception {e_auth}")
+
+    # Fallback: try API token authentication
+    try:
+        if len(authorization.split()) == 2:
+            objs = APIToken.query(token=authorization.split()[1])
+            if objs:
+                user = UserService.query(id=objs[0].tenant_id, status=StatusEnum.VALID.value)
+                if user:
+                    if not user[0].access_token or not user[0].access_token.strip():
+                        logging.warning(f"User {user[0].email} has empty access_token in database")
+                        return None
+                    g.user = user[0]
+                    return user[0]
+    except Exception as e_api_token:
+        logging.warning(f"load_user got exception {e_api_token}")
+
+    return None
 
 
 current_user = LocalProxy(_load_user)

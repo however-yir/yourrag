@@ -16,34 +16,21 @@
 
 import io
 import base64
+import json
 import pickle
+import logging
 from api.utils.common import bytes_to_string, string_to_bytes
-from common.config_utils import get_base_config
-
-safe_module = {
-    'numpy',
-    'rag_flow'
-}
-
-
-class RestrictedUnpickler(pickle.Unpickler):
-    def find_class(self, module, name):
-        import importlib
-        if module.split('.')[0] in safe_module:
-            _module = importlib.import_module(module)
-            return getattr(_module, name)
-        # Forbid everything else.
-        raise pickle.UnpicklingError("global '%s.%s' is forbidden" %
-                                     (module, name))
-
-
-def restricted_loads(src):
-    """Helper function analogous to pickle.loads()."""
-    return RestrictedUnpickler(io.BytesIO(src)).load()
 
 
 def serialize_b64(src, to_str=False):
-    dest = base64.b64encode(pickle.dumps(src))
+    """Serialize data using JSON (safe) with base64 encoding.
+    Falls back to pickle only for non-JSON-serializable objects (deprecated).
+    """
+    try:
+        dest = base64.b64encode(json.dumps(src, default=str).encode("utf-8"))
+    except (TypeError, ValueError):
+        logging.warning("SECURITY: serialize_b64 falling back to pickle for non-JSON data — migrate to JSON-safe types")
+        dest = base64.b64encode(pickle.dumps(src))
     if not to_str:
         return dest
     else:
@@ -51,11 +38,20 @@ def serialize_b64(src, to_str=False):
 
 
 def deserialize_b64(src):
-    src = base64.b64decode(
-        string_to_bytes(src) if isinstance(
-            src, str) else src)
-    use_deserialize_safe_module = get_base_config(
-        'use_deserialize_safe_module', False)
-    if use_deserialize_safe_module:
-        return restricted_loads(src)
-    return pickle.loads(src)
+    """Deserialize base64-encoded data. Tries JSON first (safe), then pickle (deprecated)."""
+    raw = base64.b64decode(string_to_bytes(src) if isinstance(src, str) else src)
+    # Try JSON first (preferred, safe)
+    try:
+        return json.loads(raw.decode("utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        pass
+    # Legacy pickle fallback — only allow safe types
+    logging.warning("SECURITY: deserialize_b64 using pickle fallback — data should be migrated to JSON format")
+    safe_module_whitelist = {"rag_flow"}
+    class _SafeUnpickler(pickle.Unpickler):
+        def find_class(self, module, name):
+            if module.split('.')[0] in safe_module_whitelist:
+                import importlib
+                return getattr(importlib.import_module(module), name)
+            raise pickle.UnpicklingError("global '%s.%s' is forbidden" % (module, name))
+    return _SafeUnpickler(io.BytesIO(raw)).load()
