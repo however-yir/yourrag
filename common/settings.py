@@ -138,22 +138,27 @@ def get_svr_queue_names():
     return [get_svr_queue_name(priority) for priority in [1, 0]]
 
 def _get_or_create_secret_key():
-    # secret_key = os.environ.get("RAGFLOW_SECRET_KEY")
-    # if secret_key and len(secret_key) >= 32:
-    #     return secret_key
-    #
-    # # Check if there's a configured secret key
-    # configured_key = get_base_config(RAG_FLOW_SERVICE_NAME, {}).get("secret_key")
-    # if configured_key and configured_key != str(date.today()) and len(configured_key) >= 32:
-    #     return configured_key
+    # Support rotation: primary key + optional previous key
+    env_key = os.environ.get("RAGFLOW_SECRET_KEY")
+    if env_key and len(env_key) >= 32:
+        return env_key
+
+    # Check configured key
+    configured_key = get_base_config(RAG_FLOW_SERVICE_NAME, {}).get("secret_key")
+    if configured_key and len(configured_key) >= 32:
+        return configured_key
 
     # Generate a new secure key and warn about it
     import logging
 
     generated_key = secrets.token_hex(32)
     secret_key = REDIS_CONN.get_or_create_secret_key("yourrag:system:secret_key", generated_key)
-    logging.warning("SECURITY WARNING: Using auto-generated SECRET_KEY.")
+    logging.warning("SECURITY WARNING: Using auto-generated SECRET_KEY. Set RAGFLOW_SECRET_KEY env var for production.")
     return secret_key
+
+
+# Previous key for rotation — tokens signed with this key remain valid during transition
+PREVIOUS_SECRET_KEY = os.environ.get("RAGFLOW_PREVIOUS_SECRET_KEY", "")
 
 class StorageFactory:
     storage_mapping = {

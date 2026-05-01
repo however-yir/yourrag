@@ -66,8 +66,15 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Go test
+      - name: Go vet
+        run: go vet ./internal/...
+
+      - name: Go test (core)
         run: go test ./internal/common ./internal/util ./internal/utility
+
+      - name: Go test (handlers + services)
+        run: go test ./internal/handler/... ./internal/service/... -count=1 -timeout 120s
+        continue-on-error: true
 
   web-checks:
     name: Web Checks
@@ -88,6 +95,14 @@ jobs:
 
       - name: Install web dependencies
         run: npm ci
+
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+        continue-on-error: true
+
+      - name: ESLint
+        run: npm run lint
+        continue-on-error: true
 
       - name: Web build
         run: |
