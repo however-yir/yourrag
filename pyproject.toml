@@ -74,7 +74,7 @@ dependencies = [
     "opensearch-py==2.7.1",
     "ormsgpack==1.5.0",
     "pdfplumber==0.10.4",
-    "pluginlib==0.9.4",
+    "pluginlib==0.11.0",
     "psycopg2-binary>=2.9.11,<3.0.0",
     "pyclipper>=1.4.0,<2.0.0",
     "pytest>=8.3.5",
