@@ -110,7 +110,7 @@ jobs:
 
       - name: Login to DockerHub
         if: steps.dockerhub.outputs.has_token == 'true'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: infiniflow
           password: ${{ secrets.DOCKERHUB_TOKEN }}
