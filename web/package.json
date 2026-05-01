@@ -81,7 +81,7 @@
     "dayjs": "^1.11.10",
     "dompurify": "^3.3.2",
     "embla-carousel-react": "^8.6.0",
-    "eventsource-parser": "^1.1.2",
+    "eventsource-parser": "^3.0.8",
     "human-id": "^4.1.1",
     "i18next": "^23.7.16",
     "i18next-browser-languagedetector": "^8.0.0",
