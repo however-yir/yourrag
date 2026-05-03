@@ -106,7 +106,7 @@ dependencies = [
     "nest-asyncio>=1.6.0,<2.0.0",  # Needed for agent/component/message.py
     "sqlglotrs==0.9.0",
     "strenum==0.4.15",
-    "tavily-python==0.5.1",
+    "tavily-python==0.7.24",
     "tencentcloud-sdk-python==3.0.1478",
     "tika==2.6.0",
     "valkey==6.0.2",
