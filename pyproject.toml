@@ -108,7 +108,7 @@ dependencies = [
     "strenum==0.4.15",
     "tavily-python==0.5.1",
     "tencentcloud-sdk-python==3.0.1478",
-    "tika==2.6.0",
+    "tika==3.1.0",
     "valkey==6.0.2",
     "volcengine==1.0.194",
     "voyageai==0.2.3",
