@@ -79,7 +79,7 @@ dependencies = [
     "pyclipper>=1.4.0,<2.0.0",
     "pytest>=8.3.5",
     # "pywencai>=0.13.1,<1.0.0",  # Temporarily disabled: conflicts with agentrun-sdk (pydash>=8), needed for agent/tools/wencai.py
-    "pycryptodomex==3.20.0",
+    "pycryptodomex==3.23.0",
     "pyobvector==0.2.22",
     "pyodbc>=5.2.0,<6.0.0",
     "pypandoc>=1.16",
@@ -174,7 +174,7 @@ test = [
     "reportlab>=4.4.1",
     "requests>=2.32.2",
     "requests-toolbelt>=1.0.0",
-    "pycryptodomex==3.20.0",
+    "pycryptodomex==3.23.0",
     "pytest-playwright>=0.7.2",
     "codecov>=2.1.13",
 ]
