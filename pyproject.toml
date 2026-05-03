@@ -110,7 +110,7 @@ dependencies = [
     "tencentcloud-sdk-python==3.0.1478",
     "tika==2.6.0",
     "valkey==6.0.2",
-    "volcengine==1.0.194",
+    "volcengine==1.0.221",
     "voyageai==0.2.3",
     "webdav4>=0.10.0,<0.11.0",
     "webdriver-manager==4.0.1",
