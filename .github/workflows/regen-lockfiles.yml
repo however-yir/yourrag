@@ -32,7 +32,7 @@ jobs:
 
       - name: Regenerate package-lock.json
         working-directory: web
-        run: npm install --package-lock-only
+        run: npm install --package-lock-only --ignore-scripts
 
       - name: Commit lockfiles
         run: |
