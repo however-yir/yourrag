@@ -7,6 +7,11 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -16,11 +21,19 @@ updates:
     labels:
       - "dependencies"
       - "python"
+      - "security"
     groups:
       security-updates:
         applies-to: security-updates
         patterns:
           - "*"
+      minor-and-patch:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "npm"
     directory: "/web"
@@ -30,8 +43,14 @@ updates:
     labels:
       - "dependencies"
       - "javascript"
+      - "security"
     groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
       minor-and-patch:
+        applies-to: version-updates
         patterns:
           - "*"
         update-types:
