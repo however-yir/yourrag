@@ -11,7 +11,6 @@ PYPROJECT_ROOT/conf/service_conf.yaml is still respected by the P3 engine.
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Literal
 
 from pydantic import Field

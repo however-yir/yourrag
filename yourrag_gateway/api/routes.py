@@ -19,17 +19,16 @@ from yourrag_gateway.api.dependencies import (
     get_audit_service,
     get_auth_service,
     get_current_principal,
-    get_rate_limiter,
     get_settings,
     require_permissions,
 )
 from yourrag_gateway.api.schemas import (
+    SearchHit,
     ApiKeyCreateRequest,
     ApiKeyCreateResponse,
     ChatRequest,
     ChatResponse,
     HealthResponse,
-    IngestionTextRequest,
     LoginRequest,
     LoginResponse,
     MetricsResponse,
@@ -170,7 +169,7 @@ async def upload_document(
 def chat(request: ChatRequest) -> ChatResponse:
     """Unified agent chat — uses P3 Canvas or P1 ReAct fallback."""
     try:
-        from agent.canvas import Canvas
+        from agent.canvas import Canvas  # noqa: F401
         # TODO: Wire canvas execution per P3's flow
         return ChatResponse(session_id=request.session_id or "new", answer="Canvas agent not yet wired through gateway.", route="canvas")
     except ImportError:

@@ -30,7 +30,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from yourrag_gateway.api.dependencies import get_settings
 from yourrag_gateway.api.routes import router
 from yourrag_gateway.core.logging import configure_logging
-from yourrag_gateway.core.settings import YourRAGSettings
+from yourrag_gateway.core.settings import YourRAGSettings  # noqa: F401
 from yourrag_gateway.middleware.request_context import RequestContextMiddleware
 from yourrag_gateway.observability.telemetry import setup_open_telemetry
 
@@ -83,7 +83,7 @@ def _mount_p3_engine(application: FastAPI) -> None:
     """Optionally mount P3's Quart-based API engine as a sub-application."""
     try:
         from api.apps import app as quart_app  # type: ignore
-        from asgiref.wsgi import WsgiToAsgi  # type: ignore
+        from asgiref.wsgi import WsgiToAsgi  # type: ignore  # noqa: F401
         # Quart is ASGI-native, mount directly
         application.mount("/engine", quart_app)  # type: ignore
     except ImportError:

@@ -74,7 +74,7 @@ class ReActAgentService:
                 return _FallbackLLM()
         elif provider == "litellm":
             try:
-                import litellm
+                import litellm  # noqa: F401
                 return _LiteLLMAdapter(self.settings)
             except Exception as exc:
                 logger.warning("LiteLLM unavailable, using fallback: %s", exc)

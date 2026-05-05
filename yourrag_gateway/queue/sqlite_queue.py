@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from yourrag_gateway.queue.base import QueueBackend, QueueJobRef
+from yourrag_gateway.queue.base import QueueJobRef
 
 
 class SqliteQueueBackend:

@@ -58,7 +58,6 @@ class ToolExecutor:
         last_exc: Exception | None = None
         for attempt in range(self._settings.tool_retry_attempts + 1):
             if attempt > 0:
-                import asyncio
                 time.sleep(self._settings.tool_retry_backoff_seconds)
             future = self._executor.submit(fn, **action_input)
             try:
