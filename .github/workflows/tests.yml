@@ -46,7 +46,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
-        run: uv sync --python 3.12 --group test --frozen
+        run: uv sync --python 3.12 --group test
 
       - name: Ruff lint
         run: uvx --from ruff ruff check
@@ -89,7 +89,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
           cache-dependency-path: web/package-lock.json
 
