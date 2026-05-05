@@ -23,7 +23,8 @@
     "@radix-ui/react-dismissable-layer": "1.1.4",
     "monaco-editor": {
       "dompurify": "3.3.2"
-    }
+    },
+    "xlsx": "npm:xlsx-js-style@^1.0.0"
   },
   "dependencies": {
     "@ant-design/icons": "^6.2.2",
