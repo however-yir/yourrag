@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import * as XLSX from 'xlsx';
+import * as XLSX from 'xlsx-js-style';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
@@ -41,7 +41,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { SearchInput } from '@/components/ui/input';
-import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Table,
@@ -51,6 +50,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { RAGFlowPagination } from '@/components/ui/yourrag-pagination';
 
 import {
   createWhitelistEntry,
