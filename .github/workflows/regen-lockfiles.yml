@@ -12,10 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Setup Node.js
+      - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libldap2-dev libsasl2-dev libffi-dev libssl-dev
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -23,10 +28,10 @@ jobs:
           enable-cache: true
 
       - name: Regenerate uv.lock
-        run: uv lock --upgrade
+        run: uv lock
 
       - name: Setup Node.js for web
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
 
